@@ -1,0 +1,16 @@
+{
+  "name": "kana",
+  "version": "1.0.0",
+  "description": "js hiragana class + grammar builder",
+  "main": "index.js",
+  "scripts": {
+    "test": "set NODE_ENV=test&& mocha \"lib/**/*.spec.js\""
+  },
+  "author": "Thorsten Reichert",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "3.5.0",
+    "mocha": "2.5.3",
+    "sinon": "1.17.4"
+  }
+}
