@@ -9,9 +9,13 @@ const app = express();
 
 // config
 const port = process.env.NODE_PORT || 3000;
+const id = cluster.worker.id;
 
 // setup logging
-app.use(morgan('dev'));
+morgan.token('id', function getId(req) {
+    return id;
+});
+app.use(morgan(':id | :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]'));
 
 // setup client
 app.use('/client', express.static(
@@ -22,6 +26,7 @@ app.use('/client', express.static(
 app.use('/api', require('./api'));
 
 // disconnect worker on uncaught exception
+// prompts forky to restart worker
 process.on('uncaughtException', function (err) {
     console.error(err);
     require('forky').disconnect();
@@ -29,5 +34,5 @@ process.on('uncaughtException', function (err) {
 
 // start server
 app.listen(port, function () {
-    console.log('started cluster worker ' + cluster.worker.id + ' on port ' + port);
+    console.log('cluster worker ' + id + ' listening on port ' + port);
 });
