@@ -1,7 +1,7 @@
 language: node_js
 node_js: 4.2.4
 install:
-    - cd server && npm install
+    - cd server && npm install && cd ..
     - cd kana && npm install
 script:
     - cd server && npm test
