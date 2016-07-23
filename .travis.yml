@@ -5,4 +5,4 @@ install:
     - cd kana && npm install
 script:
     - cd server && npm test
-    -cd kana && npm test
+    - cd kana && npm test
