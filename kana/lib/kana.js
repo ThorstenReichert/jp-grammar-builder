@@ -118,6 +118,10 @@ class Kana {
         }
     }
 
+    clone() {
+        return new Kana(this._word.slice(0), this._type);
+    }
+
     endsWith(s) {
         let a = Kana.makeArray(s);
 
@@ -169,7 +173,7 @@ class Kana {
     }
 
     toArray () {
-        return this._word;
+        return this._word.slice(0);
     }
 
     toString (separator) {
@@ -178,6 +182,10 @@ class Kana {
 }
 
 const kana = {};
+
+kana.create = function (word, type) {
+    return new Kana(word, type);
+}
 
 chars.forEach(function (char) {
     if (kana[char]) {
@@ -225,6 +233,14 @@ Object.defineProperty(Kana.prototype, 'type', {
         }
         this._type = t;
     }
+});
+
+if (Kana.prototype['word']) {
+    throw new Error('Kana: property word already defined on Kana.prototype');
+}
+Object.defineProperty(Kana.prototype, 'word', {
+    get: function () { return this._word; },
+    set: function (w) { this._word = w; }
 });
 
 module.exports = kana;

@@ -125,6 +125,29 @@ describe('kana', function () {
 
     });
 
+    describe('#clone', function () {
+        
+        it('should create clone', function () {
+            let k = kana.i.tu.mo.clone();
+            let c = k.clone();
+
+            expect(k === c).to.be.false;
+            expect(k._word === c._word).to.be.false;
+        });
+
+        it('should create clone with same values', function () {
+            let k = kana.ichidan.te.tu.mo;
+            let c = k.clone();
+
+            expect(k.type).to.equal(c.type);
+            expect(k.word.length).to.equal(c.word.length);
+            for (let i = 0; i < k.word.length; i++) {
+                expect(k.word[i]).to.equal(c.word[i])
+            }
+        });
+
+    });
+
     describe('#endsWith', function () {
 
         it('should compare ending with Kana argument', function () {
