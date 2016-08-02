@@ -28,4 +28,5 @@ module.exports = [
     'rya', 'ryu', 'ryo',
     'wa', 'wo',
     'n',
+    'k', 's', 't', 'p'
 ];

@@ -33,8 +33,8 @@ describe('kana', function () {
         });
 
         it('should create different instances of Kana', function () {
-            expect(kana.te).to.not.equal(kana.te);
-            expect(kana.godan).to.not.equal(kana.godan);
+            expect(kana.te === kana.te).to.be.false;
+            expect(kana.godan === kana.godan).to.be.false;
         });
 
     });
@@ -62,17 +62,17 @@ describe('kana', function () {
         it('should validate Array argument', function () {
             let k = kana.i;
             let fn = function () {
-                kana.add(['tu', 'm']);
+                k.add(['tu', 'm']);
             };
-            expect(fn).to.throw(Error);
+            expect(fn).to.throw(Error, 'kana#add');
         });
 
         it('should validate string argument', function () {
             let k = kana.i;
             let fn = function () {
-                kana.add('k');
+                k.add('definitelynochar');
             };
-            expect(fn).to.throw(Error);
+            expect(fn).to.throw(Error, 'kana#add');
         });
 
     });
@@ -157,7 +157,7 @@ describe('kana', function () {
         });
 
         it('should return false if argument is not supported character', function () {
-            expect(kana.i.endsWith('k')).to.be.false;
+            expect(kana.i.endsWith('definitelynochar')).to.be.false;
         });
 
         it('should return false if argument contains not supported character', function () {
@@ -202,7 +202,7 @@ describe('kana', function () {
         });
 
         it('should return false if argument is not supported character', function () {
-            expect(kana.i.equals('k')).to.be.false;
+            expect(kana.i.equals('definitelynochar')).to.be.false;
         });
 
         it('should return false if argument contains not supported character', function () {
@@ -231,28 +231,28 @@ describe('kana', function () {
             let fn = function () {
                 kana.ichidan.require('ichidan');
             };
-            expect(fn).to.not.throw(Error);
+            expect(fn).to.not.throw(Error, 'kana#require');
         });
 
         it('should not throw if type is one of required types', function () {
             let fn = function () {
                 kana.ichidan.require(['ichidan', 'godan']);
             };
-            expect(fn).to.not.throw(Error);
+            expect(fn).to.not.throw(Error, 'kana#require');
         });
 
         it('should throw Error if type is not required type', function () {
             let fn = function () {
                 kana.ichidan.require('godan');
             };
-            expect(fn).to.throw(Error);
+            expect(fn).to.throw(Error, 'kana#require');
         });
 
         it('should throw Error if type is not one of required types', function () {
             let fn = function () {
                 kana.ichidan.require(['stem', 'godan']);
             };
-            expect(fn).to.throw(Error);
+            expect(fn).to.throw(Error, 'kana#require');
         });
 
     });

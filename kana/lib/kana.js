@@ -3,7 +3,7 @@
 const chars = require('./chars');
 const types = require('./types');
 const specials = require('./specials');
-const grammar = require('./grammar');
+let grammar = null;
 
 class Kana {
     /**
@@ -226,6 +226,8 @@ Object.defineProperty(Kana.prototype, 'type', {
         this._type = t;
     }
 });
+
+grammar = require('./grammar')(kana);
 
 module.exports = kana;
 module.exports.chars = chars;
