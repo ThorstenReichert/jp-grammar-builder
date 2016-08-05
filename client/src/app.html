@@ -1,4 +1,14 @@
 <template>
   <require from="bootstrap/css/bootstrap.css"></require>
-  <h1>${message}</h1>
+  <require from="./resources/elements/kana-input"></require>
+
+  <div class="header">
+    <div class="message">JP Grammar Builder</div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <kana-input></kana-input>
+    </div>
+  </div>
 </template>
