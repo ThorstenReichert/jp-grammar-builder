@@ -1,0 +1,26 @@
+<template>
+  <form class="form-horizontal" role="form">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="kana-word">Word</label>
+      <div class="col-sm-10">
+        <input type="test" class="form-control" id="kana-word" value.bind="word">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="kana-type">Type</label>
+      <div class="col-sm-2">
+        <select class="form-control" id="kana-type" value.bind="type">
+          <option></option>
+          <option>Ichidan</option>
+          <option>Godan</option>
+          <option>Adjectival</option>
+          <option>Nominal</option>
+        </select>
+      </div>
+    </div>
+  </form>
+  <div>
+    <p>Word: ${word}</p>
+    <p>Type: ${type}</p>
+  </div>
+</template>
