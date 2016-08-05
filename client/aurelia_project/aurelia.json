@@ -27,7 +27,10 @@
     "id": "none",
     "displayName": "None",
     "fileExtension": ".css",
-    "source": "src\\**\\*.css"
+    "source": [
+      "src\\**\\*.css",
+      "styles\\**\\*.css"
+    ]
   },
   "editor": {
     "id": "vscode",
