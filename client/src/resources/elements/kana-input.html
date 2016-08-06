@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="kana-word">Word</label>
+      <label class="control-label col-sm-2" for="kana-word">JSL</label>
       <div class="col-sm-8">
         <input type="test" class="form-control" id="kana-word" autocomplete="off" value.bind="word">
       </div>
@@ -25,8 +25,11 @@
           <option>Nominal</option>
         </select>
       </div>
-      <div class="col-sm-2 col-sm-offset-5">
-        <button type="submit">Submit</button>
+      <div class="col-sm-2 col-sm-offset-4">
+        <select class="form-control" id="kana-alphabet" value.bind="KanaService.alphabet">
+          <option value="hiragana">Hiragana</option>
+          <option value="katakana">Katakana</option>
+        </select>
       </div>
     </div>
   </form>

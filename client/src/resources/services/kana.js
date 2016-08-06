@@ -31,7 +31,6 @@ const chars = [
     'k', 's', 't', 'p'
 ];
 
-// buggy!
 function parse(string) {
     let res = [];
 
@@ -68,6 +67,7 @@ function parse(string) {
 export class KanaService {
     constructor() {
         this._word = [];
+        this._alphabet = 'hiragana';
     }
 
     set word(value) {
@@ -81,6 +81,20 @@ export class KanaService {
     @computedFrom('_word')
     get word() {
         return this._word;
+    }
+
+    set alphabet(value) {
+        if (value === 'katakana') {
+            this._alphabet = 'katakana';
+        }
+        else {
+            this._alphabet = 'hiragana';
+        }
+    }
+
+    @computedFrom('_alphabet')
+    get alphabet() {
+        return this._alphabet;
     }
 }
 

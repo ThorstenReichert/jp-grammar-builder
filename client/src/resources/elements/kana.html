@@ -1,4 +1,14 @@
 <template>
   <require from="./../value-converters/hiragana"></require>
-  <span style="word-spacing: 5px; margin: 0; padding: 0;" class="class" innerhtml="${word | hiragana}"></span>
+  <require from="./../value-converters/katakana"></require>
+  <span
+    if.bind="KanaService.alphabet !== 'katakana'"
+    style="style"
+    innerhtml="${word | hiragana}">
+  </span>
+  <span
+    if.bind="KanaService.alphabet === 'katakana'"
+    style.bind="style"
+    innerhtml="${word | katakana}">
+  </span>
 </template>
