@@ -1,0 +1,12 @@
+<template>
+  <div class="form-group" repeat.for="conjugation of GrammarService.stack">
+    <div class="col-sm-offset-2 col-sm-2">
+      <select class="form-control" value.two-way="conjugation">
+        <option value=""></option>
+        <option value="distal">Distal form</option>
+        <option value="stem">Verb stem</option>
+      </select>
+    </div>
+  </div>
+  ${GrammarService.stack}
+</template>

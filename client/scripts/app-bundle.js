@@ -73,6 +73,28 @@ define('resources/index',["exports"], function (exports) {
   exports.configure = configure;
   function configure(config) {}
 });
+define('resources/elements/grammar',['exports', 'aurelia-templating', 'aurelia-framework', './../services/grammar'], function (exports, _aureliaTemplating, _aureliaFramework, _grammar) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.Grammar = undefined;
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var _dec, _class;
+
+  var Grammar = exports.Grammar = (_dec = (0, _aureliaFramework.inject)(_grammar.GrammarService), (0, _aureliaTemplating.containerless)(_class = _dec(_class = function Grammar(GrammarService) {
+    _classCallCheck(this, Grammar);
+
+    this.GrammarService = GrammarService;
+  }) || _class) || _class);
+});
 define('resources/elements/kana-input',['exports', 'aurelia-framework', 'aurelia-binding', '../services/kana'], function (exports, _aureliaFramework, _aureliaBinding, _kana) {
   'use strict';
 
@@ -180,6 +202,67 @@ define('resources/elements/kana',['exports', 'aurelia-framework', 'aurelia-templ
       return '';
     }
   })), _class2)) || _class) || _class);
+});
+define('resources/services/grammar',['exports', 'aurelia-framework', 'aurelia-binding'], function (exports, _aureliaFramework, _aureliaBinding) {
+    'use strict';
+
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.GrammarService = undefined;
+
+    function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+        }
+    }
+
+    var _createClass = function () {
+        function defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor = props[i];
+                descriptor.enumerable = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+            if (protoProps) defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) defineProperties(Constructor, staticProps);
+            return Constructor;
+        };
+    }();
+
+    var _dec, _class;
+
+    var GrammarService = exports.GrammarService = (_dec = (0, _aureliaFramework.inject)(_aureliaBinding.ObserverLocator), (0, _aureliaFramework.noView)(_class = _dec(_class = function () {
+        function GrammarService(ObserverLocator) {
+            _classCallCheck(this, GrammarService);
+
+            this._stack = ['distal', 'stem'];
+
+            this.stackObserver = ObserverLocator.getArrayObserver(this._stack).subscribe(function (val) {
+                console.log('observed change');
+                console.log(val);
+            });
+            console.log('pushing distal');
+            this._stack.push('distal');
+            console.log('pushing stem');
+            this._stack.push('stem');
+            console.log(this._stack);
+        }
+
+        _createClass(GrammarService, [{
+            key: 'stack',
+            get: function get() {
+                return this._stack;
+            }
+        }]);
+
+        return GrammarService;
+    }()) || _class) || _class);
 });
 define('resources/services/kana',['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
     'use strict';
@@ -610,7 +693,8 @@ define('resources/value-converters/katakana',['exports'], function (exports) {
   }();
 });
 define('text!app.html', ['module'], function(module) { module.exports = "<template>\r\n  <require from=\"bootstrap/css/bootstrap.css\"></require>\r\n  <require from=\"./resources/elements/kana-input\"></require>\r\n\r\n  <div class=\"header\">\r\n    <div class=\"message\">JP Grammar Builder</div>\r\n  </div>\r\n\r\n  <div class=\"container\">\r\n    <div class=\"row\">\r\n      <kana-input></kana-input>\r\n    </div>\r\n  </div>\r\n</template>\r\n"; });
-define('text!resources/elements/kana-input.html', ['module'], function(module) { module.exports = "<template>\r\n  <require from=\"./../value-converters/hiragana\"></require>\r\n  <require from=\"./kana\"></require>\r\n\r\n  <form class=\"form-horizontal\" role=\"form\">\r\n    <div class=\"form-group\">\r\n      <div class=\"col-sm-offset-2 col-sm-8\">\r\n        <h3><kana word.bind=\"KanaService.word\"></kana></h3>\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label class=\"control-label col-sm-2\" for=\"kana-word\">JSL</label>\r\n      <div class=\"col-sm-8\">\r\n        <input type=\"test\" class=\"form-control\" id=\"kana-word\" autocomplete=\"off\" value.bind=\"word\">\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label class=\"control-label col-sm-2\" for=\"kana-type\">Type</label>\r\n      <div class=\"col-sm-2\">\r\n        <select class=\"form-control\" id=\"kana-type\" value.bind=\"type\">\r\n          <option></option>\r\n          <option>Ichidan</option>\r\n          <option>Godan</option>\r\n          <option>Adjectival</option>\r\n          <option>Nominal</option>\r\n        </select>\r\n      </div>\r\n      <div class=\"col-sm-2 col-sm-offset-4\">\r\n        <select class=\"form-control\" id=\"kana-alphabet\" value.bind=\"KanaService.alphabet\">\r\n          <option value=\"hiragana\">Hiragana</option>\r\n          <option value=\"katakana\">Katakana</option>\r\n        </select>\r\n      </div>\r\n    </div>\r\n  </form>\r\n</template>"; });
+define('text!resources/elements/grammar.html', ['module'], function(module) { module.exports = "<template>\n  <div class=\"form-group\" repeat.for=\"conjugation of GrammarService.stack\">\n    <div class=\"col-sm-offset-2 col-sm-2\">\n      <select class=\"form-control\" value.two-way=\"conjugation\">\n        <option value=\"\"></option>\n        <option value=\"distal\">Distal form</option>\n        <option value=\"stem\">Verb stem</option>\n      </select>\n    </div>\n  </div>\n  ${GrammarService.stack}\n</template>"; });
 define('text!../styles/loading-page.css', ['module'], function(module) { module.exports = "@keyframes loaded {\r\n  from { margin: 10% 0 0 0; }\r\n  to { margin: 3% 0 7% 0; }\r\n}\r\n\r\nbody {\r\n  margin: 0;\r\n}\r\n\r\n.splash, .header {\r\n  text-align: center;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.splash {\r\n  margin: 10% 0 0 0;\r\n}\r\n\r\n.header {\r\n  margin: 3% 0 7% 0;\r\n}\r\n\r\n.splash .message, .header .message {\r\n  font-size: 72px;\r\n  line-height: 72px;\r\n  text-shadow: rgba(0, 0, 0, 0.5) 0 0 15px;\r\n  text-transform: uppercase;\r\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\r\n}\r\n\r\n.header {\r\n  animation-name: loaded;\r\n  animation-duration: 1s;\r\n}\r\n\r\n.splash .fa-spinner {\r\n  text-align: center;\r\n  display: inline-block;\r\n  font-size: 72px;\r\n  margin-top: 50px;\r\n}"; });
+define('text!resources/elements/kana-input.html', ['module'], function(module) { module.exports = "<template>\r\n  <require from=\"./../value-converters/hiragana\"></require>\r\n  <require from=\"./kana\"></require>\r\n  <require from=\"./grammar\"></require>\r\n\r\n  <form class=\"form-horizontal\" role=\"form\">\r\n    <div class=\"form-group\">\r\n      <div class=\"col-sm-offset-2 col-sm-8\">\r\n        <h3><kana word.bind=\"KanaService.word\"></kana></h3>\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label class=\"control-label col-sm-2\" for=\"kana-word\">JSL</label>\r\n      <div class=\"col-sm-8\">\r\n        <input type=\"test\" class=\"form-control\" id=\"kana-word\" autocomplete=\"off\" value.bind=\"word\">\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label class=\"control-label col-sm-2\" for=\"kana-type\">Type</label>\r\n      <div class=\"col-sm-2\">\r\n        <select class=\"form-control\" id=\"kana-type\" value.bind=\"type\">\r\n          <option></option>\r\n          <option>Ichidan</option>\r\n          <option>Godan</option>\r\n          <option>Adjectival</option>\r\n          <option>Nominal</option>\r\n        </select>\r\n      </div>\r\n      <div class=\"col-sm-2 col-sm-offset-4\">\r\n        <select class=\"form-control\" id=\"kana-alphabet\" value.bind=\"KanaService.alphabet\">\r\n          <option value=\"hiragana\">Hiragana</option>\r\n          <option value=\"katakana\">Katakana</option>\r\n        </select>\r\n      </div>\r\n    </div>\r\n    <!--<grammar></grammar>-->\r\n  </form>\r\n</template>"; });
 define('text!resources/elements/kana.html', ['module'], function(module) { module.exports = "<template>\n  <require from=\"./../value-converters/hiragana\"></require>\n  <require from=\"./../value-converters/katakana\"></require>\n  <span\n    if.bind=\"KanaService.alphabet !== 'katakana'\"\n    style=\"style\"\n    innerhtml=\"${word | hiragana}\">\n  </span>\n  <span\n    if.bind=\"KanaService.alphabet === 'katakana'\"\n    style.bind=\"style\"\n    innerhtml=\"${word | katakana}\">\n  </span>\n</template>"; });
 //# sourceMappingURL=app-bundle.js.map
