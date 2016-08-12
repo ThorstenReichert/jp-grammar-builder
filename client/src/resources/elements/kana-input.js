@@ -1,13 +1,15 @@
 import {bindable, inject} from 'aurelia-framework';
 import {ObserverLocator} from 'aurelia-binding';
 import {KanaService} from '../services/kana';
+import {GrammarService} from '../services/grammar';
 
-@inject(ObserverLocator, KanaService)
+@inject(ObserverLocator, KanaService, GrammarService)
 export class KanaInput {
-  constructor(ObserverLocator, KanaService) {
+  constructor(ObserverLocator, KanaService, GrammarService) {
     this.word = '';
     this.type = '';
     this.KanaService = KanaService;
+    this.GrammarService = GrammarService;
 
     // enables use of "this" in onKanaChange
     this.onKanaChange = this.onKanaChange.bind(this);
