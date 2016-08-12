@@ -14,7 +14,7 @@ class GrammarItem {
         this.notify = notify;
     }
 
-    @observable id = '';
+    @observable({changeHandler: 'idChanged'}) id = '';
     idChanged(newValue, oldValue) {
         if (typeof this.notify === 'function') {
             this.notify();
