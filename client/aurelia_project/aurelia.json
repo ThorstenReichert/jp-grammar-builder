@@ -28,8 +28,13 @@
     "displayName": "None",
     "fileExtension": ".css",
     "source": [
-      "src\\**\\*.css",
-      "styles\\**\\*.css"
+      "src\\**\\*.css"
+    ]
+  },
+  "styles": {
+    "source": [
+      "styles\\**\\*.css",
+      "!styles\\bundle.css"
     ]
   },
   "editor": {
@@ -136,7 +141,11 @@
             "main": "aurelia-testing",
             "env": "dev"
           },
-          "jquery",
+          {
+            "name": "jquery",
+            "path": "../node_modules/jquery",
+            "main": "dist/jquery.min"
+          },
           {
             "name": "bootstrap",
             "path": "../node_modules/bootstrap/dist",
