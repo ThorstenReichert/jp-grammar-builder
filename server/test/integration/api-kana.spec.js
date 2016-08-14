@@ -4,6 +4,7 @@ const async = require('async');
 const expect = require('chai').expect;
 const kana = require('../../../kana');
 const wagner = require('wagner-core');
+const _ = require('lodash');
 
 describe('api/kana', function () {
 
@@ -53,10 +54,11 @@ describe('api/kana', function () {
         };
     });
 
-    it('should set req.kana', function (done) {
+    it('should set req.result array', function (done) {
         api(function (err) {
             expect(err).to.not.exist;
-            expect(mocks.req.kana).to.exist;
+            expect(mocks.req.result).to.exist;
+            expect(Array.isArray(mocks.req.result));
             done();
         });
     });
@@ -67,24 +69,49 @@ describe('api/kana', function () {
         mocks.req.body.kana.type = test.type;
         mocks.req.body.grammar = 'stem';
         test.applyRule('stem');
-        
+
         api(function (err) {
             expect(err).to.not.exist;
-            expect(mocks.req.kana.equals(test)).to.be.true;
+
+            let res = mocks.req.result;
+            expect(res.length).to.equal(2);
+
+            expect(_.isEqual(res[0].kana, kana.ta.be.ru.toArray())).to.be.true;
+            expect(res[0].type).to.equal('ichidan');
+
+            expect(_.isEqual(res[1].kana, test.toArray())).to.be.true;
+            expect(res[1].type).to.equal(test.type);
+
             done();
         });
     });
 
-    it('should conjugate kana formultiple grammar rules', function (done) {
+    it('should conjugate kana for multiple grammar rules', function (done) {
         let test = kana.ichidan.ta.be.ru;
         mocks.req.body.kana.word = test.toArray();
         mocks.req.body.kana.type = test.type;
         mocks.req.body.grammar = ['stem', 'distal'];
-        test.applyRule('stem').applyRule('distal');
+
+        let one = test.clone();
+        test.applyRule('stem');
+        let two = test.clone();
+        test.applyRule('distal');
 
         api(function (err) {
             expect(err).to.not.exist;
-            expect(mocks.req.kana.equals(test)).to.be.true;
+
+            let res = mocks.req.result;
+            expect(res.length).to.equal(3);
+
+            expect(_.isEqual(res[0].kana, one.toArray())).to.be.true;
+            expect(res[0].type).to.equal(one.type);
+
+            expect(_.isEqual(res[1].kana, two.toArray())).to.be.true;
+            expect(res[1].type).to.equal(two.type);
+
+            expect(_.isEqual(res[2].kana, test.toArray())).to.be.true;
+            expect(res[2].type).to.equal(test.type);
+
             done();
         });
     });
