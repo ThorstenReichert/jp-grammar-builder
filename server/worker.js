@@ -32,6 +32,11 @@ app.use('/client', express.static(
 // setup api
 app.use('/api', require('./api')(wagner));
 
+// default to /client
+app.use('/', function (req, res, err) {
+    res.redirect('/client');
+});
+
 // disconnect worker on uncaught exception
 // prompts forky to restart worker
 process.on('uncaughtException', function (err) {
