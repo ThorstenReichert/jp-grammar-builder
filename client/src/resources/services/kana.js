@@ -67,6 +67,7 @@ function parse(string) {
 export class KanaService {
     constructor() {
         this._word = [];
+        this._type = '';
         this._alphabet = 'hiragana';
     }
 
@@ -95,6 +96,17 @@ export class KanaService {
     @computedFrom('_alphabet')
     get alphabet() {
         return this._alphabet;
+    }
+
+    set type(value) {
+        if (typeof value === 'string') {
+            this._type = value;
+        }
+    }
+
+    @computedFrom('_type')
+    get type() {
+        return this._type;
     }
 }
 

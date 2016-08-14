@@ -1,5 +1,7 @@
 import {noView, computedFrom, inject} from 'aurelia-framework';
 import {ObserverLocator, BindingEngine, observable} from 'aurelia-binding';
+import {ApiService} from './api';
+import {KanaService} from './kana';
 
 function range(length) {
     let res = [];
@@ -27,8 +29,11 @@ class GrammarItem {
 }
 
 @noView
+@inject(ApiService, KanaService)
 export class GrammarService {
-    constructor() {
+    constructor(ApiService, KanaService) {
+        this.ApiService = ApiService;
+        this.KanaService = KanaService;
         this.stack = [new GrammarItem(this.clean.bind(this))];
     }
 
@@ -48,6 +53,19 @@ export class GrammarService {
         }
         newStack.push(new GrammarItem(this.clean.bind(this)));
         this.stack = newStack;
+    }
+
+    query() {
+        let grammar = [];
+        for (let i = 0; i < this.stack.length; i++) {
+            grammar.push(this.stack[i].id);
+        }
+
+        this.ApiService.grammarQuery(
+            this.KanaService.word,
+            this.KanaService.type,
+            grammar
+        );
     }
 }
 
