@@ -32,15 +32,15 @@ describe('grammar', function () {
 
     describe('#distal', function () {
 
-        it('of tabe should be tabemasu', function () {
+        it('of tabe (stem) should be tabemasu', function () {
             expect(kana.stem.ta.be.applyRule('distal').toString()).to.equal('tabemasu');
         });
 
-        it('of kai should be kaimasu', function () {
+        it('of kai (stem) should be kaimasu', function () {
             expect(kana.stem.ka.i.applyRule('distal').toString()).to.equal('kaimasu');
         });
 
-        it('of kiru should be kirimasu', function () {
+        it('of kiru (stem) should be kirimasu', function () {
             expect(kana.stem.ki.ri.applyRule('distal').toString()).to.equal('kirimasu');
         });
 
