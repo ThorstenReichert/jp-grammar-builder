@@ -11,34 +11,38 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="kana-word">JSL</label>
       <div class="col-sm-8">
-        <input type="test" class="form-control" id="kana-word" autocomplete="off" value.bind="word">
+        <input type="text" class="form-control" id="kana-word" autocomplete="off" tabindex="1" value.bind="word">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="kana-type">Type</label>
       <div class="col-sm-2">
-        <select class="form-control" id="kana-type" value.bind="type">
+        <select class="form-control" id="kana-type" tabindex="2" value.bind="type">
           <option></option>
-          <option>Ichidan</option>
-          <option>Godan</option>
-          <option>Adjectival</option>
-          <option>Nominal</option>
+          <option value="ichidan">Ichidan</option>
+          <option value="godan">Godan</option>
+          <option value="adjectival">Adjectival</option>
+          <option value="nominal">Nominal</option>
         </select>
       </div>
       <div class="col-sm-2 col-sm-offset-4">
-        <select class="form-control" id="kana-alphabet" value.bind="KanaService.alphabet">
+        <select class="form-control" id="kana-alphabet" tabindex="-1" value.bind="KanaService.alphabet">
           <option value="hiragana">Hiragana</option>
           <option value="katakana">Katakana</option>
         </select>
       </div>
     </div>
     <div class="form-group" repeat.for="item of GrammarService.stack">
-      <div class="col-sm-2 col-sm-offset-2">
-        <select class="form-control" value.bind="item.id">
+      <label class="control-label col-sm-2" if.bind="$first">Grammar</label>
+      <div class="col-sm-2 ${$first ? '' : 'col-sm-offset-2'}">
+        <select class="form-control" tabindex="${$index + 2}" value.bind="item.id">
           <option value=""></option>
           <option value="stem">Verb stem</option>
           <option value="distal">Distal form</option>
         </select>
+      </div>
+      <div class="col-sm-2 col-sm-offset-4" if.bind="$last">
+        <button type="submit" class="btn btn-default btn-block" click.delegate="GrammarService.query()">Submit</button>
       </div>
     </div>
   </form>
