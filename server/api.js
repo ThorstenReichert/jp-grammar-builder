@@ -18,7 +18,7 @@ module.exports = function (wagner) {
         parseKana,
         procKana,
         function (req, res) {
-            res.status(200).json(req.kana);
+            res.status(200).json(req.result);
         }
     );
 
