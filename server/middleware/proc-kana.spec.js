@@ -112,4 +112,26 @@ describe('middleware#proc-kana', function () {
         });
     });
 
+    it('should skip empty rules', function (done) {
+        let test = mocks.kana.clone();
+        mocks.req.body.grammar = ['stem', '', 'distal'];
+
+        let one = test.clone().toArray();
+        test.applyRule('stem');
+        let two = test.clone().toArray();
+        test.applyRule('distal');
+
+        procKana(mocks.req, null, function (err) {
+            expect(err).to.not.exist;
+
+            let res = mocks.req.result;
+            expect(res.length).to.equal(3);
+            expect(_.isEqual(res[0].kana, one)).to.be.true;
+            expect(_.isEqual(res[1].kana, two)).to.be.true;
+            expect(_.isEqual(res[2].kana, test.toArray())).to.be.true;
+
+            done();
+        });
+    });
+
 });

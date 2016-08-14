@@ -23,12 +23,14 @@ module.exports = function (wagner) {
 
                 try {
                     _.each(req.body.grammar, function (id) {
-                        let i = req.result.push({
-                            rule: id
-                        });
-                        req.kana.applyRule(id);
-                        req.result[i-1].kana = req.kana.clone().toArray();
-                        req.result[i-1].type = req.kana.type;
+                        if (id && typeof id === 'string' && id !== '') {
+                            let i = req.result.push({
+                                rule: id
+                            });
+                            req.kana.applyRule(id);
+                            req.result[i-1].kana = req.kana.clone().toArray();
+                            req.result[i-1].type = req.kana.type;
+                        }
                     });
                 }
                 catch(err) {

@@ -26,10 +26,8 @@ describe('api/kana', function () {
     beforeEach(function () {
         mocks.req = {
             body: {
-                kana: {
-                    word: ['ta', 'be', 'ru'],
-                    type: 'ichidan'
-                },
+                kana: ['ta', 'be', 'ru'],
+                type: 'ichidan',
                 grammar: null
             }
         };
@@ -64,10 +62,12 @@ describe('api/kana', function () {
     });
 
     it('should conjugate kana for single grammar rule', function (done) {
-        let test = kana.ichidan.ta.be.ru;
-        mocks.req.body.kana.word = test.toArray();
-        mocks.req.body.kana.type = test.type;
+        let test = kana.ichidan.mi.ru;
+        mocks.req.body.kana = test.toArray();
+        mocks.req.body.type = test.type;
         mocks.req.body.grammar = 'stem';
+
+        let one = test.clone();
         test.applyRule('stem');
 
         api(function (err) {
@@ -76,8 +76,8 @@ describe('api/kana', function () {
             let res = mocks.req.result;
             expect(res.length).to.equal(2);
 
-            expect(_.isEqual(res[0].kana, kana.ta.be.ru.toArray())).to.be.true;
-            expect(res[0].type).to.equal('ichidan');
+            expect(_.isEqual(res[0].kana, one.toArray())).to.be.true;
+            expect(res[0].type).to.equal(one.type);
 
             expect(_.isEqual(res[1].kana, test.toArray())).to.be.true;
             expect(res[1].type).to.equal(test.type);
@@ -87,9 +87,9 @@ describe('api/kana', function () {
     });
 
     it('should conjugate kana for multiple grammar rules', function (done) {
-        let test = kana.ichidan.ta.be.ru;
-        mocks.req.body.kana.word = test.toArray();
-        mocks.req.body.kana.type = test.type;
+        let test = kana.ichidan.mi.ru;
+        mocks.req.body.kana = test.toArray();
+        mocks.req.body.type = test.type;
         mocks.req.body.grammar = ['stem', 'distal'];
 
         let one = test.clone();
