@@ -2,7 +2,7 @@
   <require from="./../value-converters/hiragana"></require>
   <require from="./kana"></require>
 
-  <form class="form-horizontal" role="form">
+  <form class="form-horizontal" role="form" submit.delegate="GrammarService.query()">
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-8">
         <h3><kana word.bind="KanaService.word"></kana></h3>
@@ -41,8 +41,14 @@
           <option value="distal">Distal form</option>
         </select>
       </div>
+      <div class="col-sm-6" if.bind="item.hasResult">
+        <h4><kana word.bind="item.result"></kana></h4>
+      </div>
+      <div class="col-sm-6" if.bind="item.hasError">
+        <div class="alert alert-danger">${item.error}</div>
+      </div>
       <div class="col-sm-2 col-sm-offset-4" if.bind="$last">
-        <button type="submit" class="btn btn-default btn-block" click.delegate="GrammarService.query()">Submit</button>
+        <button type="submit" class="btn btn-default btn-block">Submit</button>
       </div>
     </div>
   </form>
