@@ -22,21 +22,19 @@ describe('middleware#parse-kana', function () {
     beforeEach(function () {
         mocks.req = {
             body: {
-                kana: {
-                    word: ['i','tu','mo'],
-                    type: 'ichidan'
-                }
+                kana: ['ta','be','ru'],
+                type: 'ichidan'
             }
-        }
-    })
+        };
+    });
 
     it('should export function', function () {
         expect(typeof parseKana).to.equal('function');
     });
 
     it('should create req.kana from req.body', function (done) {
-        let test = kana.create(mocks.req.body.kana.word, mocks.req.body.kana.type);
-                
+        let test = kana.create(mocks.req.body.kana, mocks.req.body.type);
+
         parseKana(mocks.req, null, function (err) {
             expect(err).to.not.exist;
             expect(mocks.req.kana).to.exist;
@@ -58,7 +56,7 @@ describe('middleware#parse-kana', function () {
             };
         });
         parseKana = require('./parse-kana')(wagner);
-        
+
         parseKana(mocks.req, null, function (err) {
             expect(err).to.exist;
             expect(err.msg).to.equal(msg);

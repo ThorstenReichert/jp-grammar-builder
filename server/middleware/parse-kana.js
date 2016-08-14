@@ -2,13 +2,29 @@
 
 module.exports = function (wagner) {
     return wagner.invoke(function (kana) {
+
+        /**
+         * expects req.body to be of form
+         *
+         *      {
+         *          kana: {Array},
+         *          type: {String},
+         *          grammar: {Array}
+         *      }
+         *
+         * where
+         *      - kana is Array of kana-characters (i.e. ['ta', 'be', 'ru'])
+         *      - type is grammatical type of kana (i.e. 'ichidan')
+         *      - grammar is Array of grammar rule id's (i.e. ['stem', 'distal'])
+         */
+
         return function (req, res, next) {
             if (req.body.kana) {
-                let k = req.body.kana;
-                if (Array.isArray(k.word) && (typeof k.type === 'string' || !k.type)) {
+                let body = req.body;
+                if (Array.isArray(body.kana) && (typeof body.type === 'string' || !body.type)) {
                     let error = null;
                     try {
-                        req.kana = kana.create(k.word, k.type);
+                        req.kana = kana.create(body.kana, body.type);
                     }
                     catch(err) {
                         error = err;
