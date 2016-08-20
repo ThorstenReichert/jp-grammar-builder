@@ -72,7 +72,7 @@ describe('grammar', function () {
             expect(k.applyRule('past').toString()).to.equal('nonda');
         });
 
-        it('of asobu (godan) should be asobunda', function () {
+        it('of asobu (godan) should be asonda', function () {
             let k = kana.godan.a.so.bu;
             expect(k.applyRule('past').toString()).to.equal('asonda');
         });
