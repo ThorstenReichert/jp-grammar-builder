@@ -65,10 +65,10 @@ describe('api/kana', function () {
         let test = kana.ichidan.mi.ru;
         mocks.req.body.kana = test.toArray();
         mocks.req.body.type = test.type;
-        mocks.req.body.grammar = 'stem';
+        mocks.req.body.grammar = 'negative';
 
         let one = test.clone();
-        test.applyRule('stem');
+        test.applyRule('negative');
 
         api(function (err) {
             expect(err).to.not.exist;
@@ -90,12 +90,12 @@ describe('api/kana', function () {
         let test = kana.ichidan.mi.ru;
         mocks.req.body.kana = test.toArray();
         mocks.req.body.type = test.type;
-        mocks.req.body.grammar = ['stem', 'distal'];
+        mocks.req.body.grammar = ['passive', 'negative'];
 
         let one = test.clone();
-        test.applyRule('stem');
+        test.applyRule('passive');
         let two = test.clone();
-        test.applyRule('distal');
+        test.applyRule('negative');
 
         api(function (err) {
             expect(err).to.not.exist;

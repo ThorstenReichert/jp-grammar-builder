@@ -64,8 +64,9 @@ describe('middleware#proc-kana', function () {
     });
 
     it('should conjugate kana for single grammar rule', function (done) {
-        let test = mocks.kana.clone().applyRule('stem');
-        mocks.req.body.grammar = 'stem';
+        let test = kana.ta.be.ta;
+        mocks.req.body.grammar = 'negative';
+        mocks.req.kana.applyRule = sinon.stub().returns(test);
 
         procKana(mocks.req, null, function (err) {
             expect(err).to.not.exist;
@@ -84,12 +85,22 @@ describe('middleware#proc-kana', function () {
     });
 
     it('should conjugate kana for multiple grammar rules', function (done) {
-        let test = mocks.kana.clone().applyRule('stem').applyRule('distal');
-        mocks.req.body.grammar = ['stem', 'distal'];
+        let one = kana.ta.be;
+        let two = kana.ta.be.ta;
+        mocks.req.body.grammar = ['passive', 'negative'];
+        mocks.req.kana.applyRule = sinon.stub().returns(one);
+        one.applyRule = sinon.stub().returns(two);
 
         procKana(mocks.req, null, function (err) {
             expect(err).to.not.exist;
-            expect(mocks.req.kana.equals(test)).to.be.true;
+
+            let res = mocks.req.result;
+            expect(res.length).to.equal(3);
+
+            expect(_.isEqual(res[0].kana, mocks.kana.toArray())).to.be.true;
+            expect(_.isEqual(res[1].kana, one.toArray())).to.be.true;
+            expect(_.isEqual(res[2].kana, two.toArray())).to.be.true;
+
             done();
         });
     });
@@ -98,7 +109,7 @@ describe('middleware#proc-kana', function () {
         let msg = 'testerrormessage';
         let stub = sinon.stub().throws({message: msg});
         mocks.req.kana.applyRule = stub;
-        mocks.req.body.grammar = 'stem';
+        mocks.req.body.grammar = 'negative';
 
         procKana(mocks.req, null, function (err) {
             expect(err).to.not.exist;
@@ -113,22 +124,23 @@ describe('middleware#proc-kana', function () {
     });
 
     it('should skip empty rules', function (done) {
-        let test = mocks.kana.clone();
+        let one = kana.ta.be;
+        let two = kana.ta.be.ra.re.ru;
+
         mocks.req.body.grammar = ['stem', '', 'distal'];
 
-        let one = test.clone().toArray();
-        test.applyRule('stem');
-        let two = test.clone().toArray();
-        test.applyRule('distal');
+        mocks.req.kana.applyRule = sinon.stub().returns(one);
+        one.applyRule = sinon.stub().returns(two);
 
         procKana(mocks.req, null, function (err) {
             expect(err).to.not.exist;
 
             let res = mocks.req.result;
             expect(res.length).to.equal(3);
-            expect(_.isEqual(res[0].kana, one)).to.be.true;
-            expect(_.isEqual(res[1].kana, two)).to.be.true;
-            expect(_.isEqual(res[2].kana, test.toArray())).to.be.true;
+
+            expect(_.isEqual(res[0].kana, mocks.kana.toArray())).to.be.true;
+            expect(_.isEqual(res[1].kana, one.toArray())).to.be.true;
+            expect(_.isEqual(res[2].kana, two.toArray())).to.be.true;
 
             done();
         });
