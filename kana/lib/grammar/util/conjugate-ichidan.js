@@ -1,14 +1,15 @@
 'use strict';
 
-module.exports = function (kana) {
+const kana = require('../../kana');
+const assertIchidan = require('./assert-ichidan');
 
-    return function (phrase, append) {
-        phrase.pop();
-        if (append) {
-            phrase.add(append);
-        }
+module.exports = function (phrase, append) {
+    assertIchidan(phrase);
 
-        return phrase;
+    phrase.pop();
+    if (append) {
+        phrase.add(append);
     }
 
+    return phrase;
 };

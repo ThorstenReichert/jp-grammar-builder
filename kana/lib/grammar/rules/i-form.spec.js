@@ -2,14 +2,12 @@
 
 const expect = require('chai').expect;
 const kana = require('../../kana');
-const ruleFactory = require('./i-form');
-const rule = ruleFactory(kana);
+const rule = require('./i-form');
 const apply = rule.apply;
 
 describe('grammar#i-form', function () {
 
-    it('should export factory function', function () {
-        expect(typeof ruleFactory).to.equal('function');
+    it('should export object', function () {
         expect(typeof rule).to.equal('object');
     });
 
@@ -60,7 +58,7 @@ describe('grammar#i-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('tukai');
             expect(type).to.equal('i-form');
         });
@@ -71,7 +69,7 @@ describe('grammar#i-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yaki');
             expect(type).to.equal('i-form');
         });
@@ -82,7 +80,7 @@ describe('grammar#i-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('oyogi');
             expect(type).to.equal('i-form');
         });
@@ -93,7 +91,7 @@ describe('grammar#i-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('simesi');
             expect(type).to.equal('i-form');
         });
@@ -104,7 +102,7 @@ describe('grammar#i-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('mati');
             expect(type).to.equal('i-form');
         });
@@ -115,7 +113,7 @@ describe('grammar#i-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('sini');
             expect(type).to.equal('i-form');
         });
@@ -126,7 +124,7 @@ describe('grammar#i-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yobi');
             expect(type).to.equal('i-form');
         });
@@ -137,7 +135,7 @@ describe('grammar#i-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yomi');
             expect(type).to.equal('i-form');
         });
@@ -148,7 +146,7 @@ describe('grammar#i-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('hasiri');
             expect(type).to.equal('i-form');
         });

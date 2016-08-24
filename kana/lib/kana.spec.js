@@ -77,56 +77,8 @@ describe('kana', function () {
 
     });
 
-    describe('#applyRule', function () {
-
-        let oldrequire = null;
-        let requireSpy = null;
-        let applySpy = null;
-        let replaced = false;
-        let name = 'testgrammarrule';
-        let k = kana.i.tu.mo;
-
-        beforeEach(function () {
-            oldrequire = kana.require;
-            requireSpy = sinon.spy();
-            applySpy = sinon.spy();
-
-            k.require = requireSpy;
-
-            if (require('./kana').grammar.testgrammarrule) {
-                console.log('warning: testgrammarrule already exists, will not replace');
-            } else {
-                require('./kana').grammar[name] = {
-                    require: 'blub',
-                    apply: applySpy
-                };
-                replaced = true;
-            }
-        });
-
-        afterEach(function () {
-            if (replaced) {
-                replaced = false;
-                delete require('./kana').grammar[name];
-            }
-        });
-
-        it('should call require with required types from rule', function () {
-            k.applyRule(name);
-            expect(requireSpy.calledOnce).to.be.true;
-            expect(requireSpy.calledWith('godan'));
-        });
-
-        it('should call apply of grammar rule on self', function () {
-            k.applyRule(name);
-            expect(applySpy.calledOnce).to.be.true;
-            expect(applySpy.calledWith(k)).to.be.true;
-        });
-
-    });
-
     describe('#clone', function () {
-        
+
         it('should create clone', function () {
             let k = kana.i.tu.mo.clone();
             let c = k.clone();

@@ -2,14 +2,12 @@
 
 const expect = require('chai').expect;
 const kana = require('../../kana');
-const ruleFactory = require('./te-form');
-const rule = ruleFactory(kana);
+const rule = require('./te-form');
 const apply = rule.apply;
 
 describe('grammar#te-form', function () {
 
-    it('should export factory function', function () {
-        expect(typeof ruleFactory).to.equal('function');
+    it('should export object', function () {
         expect(typeof rule).to.equal('object');
     });
 
@@ -60,7 +58,7 @@ describe('grammar#te-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('tukatte');
             expect(type).to.equal('te-form');
         });
@@ -71,7 +69,7 @@ describe('grammar#te-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yaite');
             expect(type).to.equal('te-form');
         });
@@ -82,7 +80,7 @@ describe('grammar#te-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('oyoide');
             expect(type).to.equal('te-form');
         });
@@ -93,7 +91,7 @@ describe('grammar#te-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('simesite');
             expect(type).to.equal('te-form');
         });
@@ -104,7 +102,7 @@ describe('grammar#te-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('matte');
             expect(type).to.equal('te-form');
         });
@@ -115,7 +113,7 @@ describe('grammar#te-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('sinde');
             expect(type).to.equal('te-form');
         });
@@ -126,7 +124,7 @@ describe('grammar#te-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yonde');
             expect(type).to.equal('te-form');
         });
@@ -137,7 +135,7 @@ describe('grammar#te-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yonde');
             expect(type).to.equal('te-form');
         });
@@ -148,7 +146,7 @@ describe('grammar#te-form', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('hasitte');
             expect(type).to.equal('te-form');
         });

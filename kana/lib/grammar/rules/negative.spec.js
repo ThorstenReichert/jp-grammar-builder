@@ -2,14 +2,12 @@
 
 const expect = require('chai').expect;
 const kana = require('../../kana');
-const ruleFactory = require('./negative');
-const rule = ruleFactory(kana);
+const rule = require('./negative');
 const apply = rule.apply;
 
 describe('grammar#negative', function () {
 
-    it('should export factory function', function () {
-        expect(typeof ruleFactory).to.equal('function');
+    it('should export object', function () {
         expect(typeof rule).to.equal('object');
     });
 
@@ -60,7 +58,7 @@ describe('grammar#negative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('tukawanai');
             expect(type).to.equal('adjectival');
         });
@@ -71,7 +69,7 @@ describe('grammar#negative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yakanai');
             expect(type).to.equal('adjectival');
         });
@@ -82,7 +80,7 @@ describe('grammar#negative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('oyoganai');
             expect(type).to.equal('adjectival');
         });
@@ -93,7 +91,7 @@ describe('grammar#negative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('simesanai');
             expect(type).to.equal('adjectival');
         });
@@ -104,7 +102,7 @@ describe('grammar#negative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('matanai');
             expect(type).to.equal('adjectival');
         });
@@ -115,7 +113,7 @@ describe('grammar#negative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('sinanai');
             expect(type).to.equal('adjectival');
         });
@@ -126,7 +124,7 @@ describe('grammar#negative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yobanai');
             expect(type).to.equal('adjectival');
         });
@@ -137,7 +135,7 @@ describe('grammar#negative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yomanai');
             expect(type).to.equal('adjectival');
         });
@@ -148,7 +146,7 @@ describe('grammar#negative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('hasiranai');
             expect(type).to.equal('adjectival');
         });

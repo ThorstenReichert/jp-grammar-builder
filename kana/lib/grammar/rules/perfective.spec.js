@@ -2,14 +2,12 @@
 
 const expect = require('chai').expect;
 const kana = require('../../kana');
-const ruleFactory = require('./perfective');
-const rule = ruleFactory(kana);
+const rule = require('./perfective');
 const apply = rule.apply;
 
 describe('grammar#perfective', function () {
 
-    it('should export factory function', function () {
-        expect(typeof ruleFactory).to.equal('function');
+    it('should export object', function () {
         expect(typeof rule).to.equal('object');
     });
 

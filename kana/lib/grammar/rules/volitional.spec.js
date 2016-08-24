@@ -2,14 +2,12 @@
 
 const expect = require('chai').expect;
 const kana = require('../../kana');
-const ruleFactory = require('./volitional');
-const rule = ruleFactory(kana);
+const rule = require('./volitional');
 const apply = rule.apply;
 
 describe('grammar#volitional', function () {
 
-    it('should export factory function', function () {
-        expect(typeof ruleFactory).to.equal('function');
+    it('should export object', function () {
         expect(typeof rule).to.equal('object');
     });
 
@@ -60,7 +58,7 @@ describe('grammar#volitional', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('tukaou');
             expect(type).to.equal('volitional');
         });
@@ -71,7 +69,7 @@ describe('grammar#volitional', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yakou');
             expect(type).to.equal('volitional');
         });
@@ -82,7 +80,7 @@ describe('grammar#volitional', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('oyogou');
             expect(type).to.equal('volitional');
         });
@@ -93,7 +91,7 @@ describe('grammar#volitional', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('simesou');
             expect(type).to.equal('volitional');
         });
@@ -104,7 +102,7 @@ describe('grammar#volitional', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('matou');
             expect(type).to.equal('volitional');
         });
@@ -115,7 +113,7 @@ describe('grammar#volitional', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('sinou');
             expect(type).to.equal('volitional');
         });
@@ -126,7 +124,7 @@ describe('grammar#volitional', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yobou');
             expect(type).to.equal('volitional');
         });
@@ -137,7 +135,7 @@ describe('grammar#volitional', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yomou');
             expect(type).to.equal('volitional');
         });
@@ -148,7 +146,7 @@ describe('grammar#volitional', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('hasirou');
             expect(type).to.equal('volitional');
         });

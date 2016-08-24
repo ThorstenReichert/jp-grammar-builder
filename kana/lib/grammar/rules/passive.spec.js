@@ -2,14 +2,12 @@
 
 const expect = require('chai').expect;
 const kana = require('../../kana');
-const ruleFactory = require('./passive');
-const rule = ruleFactory(kana);
+const rule = require('./passive');
 const apply = rule.apply;
 
 describe('grammar#passive', function () {
 
-    it('should export factory function', function () {
-        expect(typeof ruleFactory).to.equal('function');
+    it('should export object', function () {
         expect(typeof rule).to.equal('object');
     });
 
@@ -60,7 +58,7 @@ describe('grammar#passive', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('tukawareru');
             expect(type).to.equal('ichidan');
         });
@@ -71,7 +69,7 @@ describe('grammar#passive', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yakareru');
             expect(type).to.equal('ichidan');
         });
@@ -82,7 +80,7 @@ describe('grammar#passive', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('oyogareru');
             expect(type).to.equal('ichidan');
         });
@@ -93,7 +91,7 @@ describe('grammar#passive', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('simesareru');
             expect(type).to.equal('ichidan');
         });
@@ -104,7 +102,7 @@ describe('grammar#passive', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('matareru');
             expect(type).to.equal('ichidan');
         });
@@ -115,7 +113,7 @@ describe('grammar#passive', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('sinareru');
             expect(type).to.equal('ichidan');
         });
@@ -126,7 +124,7 @@ describe('grammar#passive', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yobareru');
             expect(type).to.equal('ichidan');
         });
@@ -137,7 +135,7 @@ describe('grammar#passive', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yomareru');
             expect(type).to.equal('ichidan');
         });
@@ -148,7 +146,7 @@ describe('grammar#passive', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('hasirareru');
             expect(type).to.equal('ichidan');
         });

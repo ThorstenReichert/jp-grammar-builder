@@ -2,125 +2,48 @@
 
 const expect = require('chai').expect;
 const kana = require('./kana');
-const grammar = require('./kana').grammar;
+const grammar = require('./grammar');
 
 describe('grammar', function () {
 
-    describe('#stem', function () {
-
-        it('of taberu (ichidan) should be tabe', function () {
-            expect(kana.ichidan.ta.be.ru.applyRule('stem').toString()).to.equal('tabe');
-        });
-
-        it('of sinu (godan) should be sini', function () {
-            expect(kana.godan.si.nu.applyRule('stem').toString()).to.equal('sini');
-        });
-
-        it('of hanasu (godan) should be hanasi', function () {
-            expect(kana.godan.ha.na.su.applyRule('stem').toString()).to.equal('hanasi');
-        });
-
-        it('of kau (godan) should be kai', function () {
-            expect(kana.godan.ka.u.applyRule('stem').toString()).to.equal('kai');
-        });
-
-        it('of kiru (godan) should be kiri', function () {
-            expect(kana.godan.ki.ru.applyRule('stem').toString()).to.equal('kiri');
-        });
-
+    it('should export object', function () {
+        expect(typeof grammar).to.equal('object');
     });
 
-    describe('#distal', function () {
-
-        it('of tabe (stem) should be tabemasu', function () {
-            expect(kana.stem.ta.be.applyRule('distal').toString()).to.equal('tabemasu');
-        });
-
-        it('of kai (stem) should be kaimasu', function () {
-            expect(kana.stem.ka.i.applyRule('distal').toString()).to.equal('kaimasu');
-        });
-
-        it('of kiru (stem) should be kirimasu', function () {
-            expect(kana.stem.ki.ri.applyRule('distal').toString()).to.equal('kirimasu');
-        });
-
+    it('should have rule "causative"', function () {
+        expect(grammar['causative']).to.exist;
     });
 
-    describe('#past', function () {
-
-        it('of taberu (ichidan) should be tabeta', function () {
-            expect(kana.ichidan.ta.be.ru.applyRule('past').toString()).to.equal('tabeta');
-        });
-
-        it('of hanasu (godan) should be hanasita', function () {
-            let k = kana.godan.ha.na.su;
-            expect(k.applyRule('past').toString()).to.equal('hanasita');
-        });
-
-        it('of kaku (godan) should be kaita', function () {
-            let k = kana.godan.ka.ku;
-            expect(k.applyRule('past').toString()).to.equal('kaita');
-        });
-
-        it('of oyogu (godan) should be oyoida', function () {
-            let k = kana.godan.o.yo.gu;
-            expect(k.applyRule('past').toString()).to.equal('oyoida');
-        });
-
-        it('of nomu (godan) should be nonda', function () {
-            let k = kana.godan.no.mu;
-            expect(k.applyRule('past').toString()).to.equal('nonda');
-        });
-
-        it('of asobu (godan) should be asonda', function () {
-            let k = kana.godan.a.so.bu;
-            expect(k.applyRule('past').toString()).to.equal('asonda');
-        });
-
-        it('of sinu (godan) should be sinda', function () {
-            let k = kana.godan.si.nu;
-            expect(k.applyRule('past').toString()).to.equal('sinda');
-        });
-
-        it('of kiru (godan) should be kitta', function () {
-            let k = kana.godan.ki.ru;
-            expect(k.applyRule('past').toString()).to.equal('kitta');
-        });
-
-        it('of kau (godan) should be katta', function () {
-            let k = kana.godan.ka.u;
-            expect(k.applyRule('past').toString()).to.equal('katta');
-        });
-
-        it('of motu (godan) should be motta', function () {
-            let k = kana.godan.mo.tu;
-            expect(k.applyRule('past').toString()).to.equal('motta');
-        });
-
+    it('should have rule "i-form"', function () {
+        expect(grammar['i-form']).to.exist;
     });
 
-    describe('#negative', function () {
+    it('should have rule "imperative"', function () {
+        expect(grammar['imperative']).to.exist;
+    });
 
-        it('of taberu (ichidan) should be tebenai', function () {
-            let k = kana.ichidan.ta.be.ru;
-            expect(k.applyRule('negative').toString()).to.equal('tabenai');
-        });
+    it('should have rule "negative"', function () {
+        expect(grammar['negative']).to.exist;
+    });
 
-        it('of sinu (godan) should be sinanai', function () {
-            let k = kana.godan.si.nu;
-            expect(k.applyRule('negative').toString()).to.equal('sinanai');
-        });
+    it('should have rule "passive"', function () {
+        expect(grammar['passive']).to.exist;
+    });
 
-        it('of kiru (godan) should be kiranai', function () {
-            let k = kana.godan.ki.ru;
-            expect(k.applyRule('negative').toString()).to.equal('kiranai');
-        });
+    it('should have rule "perfective"', function () {
+        expect(grammar['perfective']).to.exist;
+    });
 
-        it('of motu (godan) should be motanai', function () {
-            let k = kana.godan.mo.tu;
-            expect(k.applyRule('negative').toString()).to.equal('motanai');
-        });
+    it('should have rule "potential"', function () {
+        expect(grammar['potential']).to.exist;
+    });
 
+    it('should have rule "te-form"', function () {
+        expect(grammar['te-form']).to.exist;
+    });
+
+    it('should have rule "volitional"', function () {
+        expect(grammar['volitional']).to.exist;
     });
 
 });

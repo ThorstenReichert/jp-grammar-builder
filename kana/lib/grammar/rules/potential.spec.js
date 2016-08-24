@@ -2,14 +2,12 @@
 
 const expect = require('chai').expect;
 const kana = require('../../kana');
-const ruleFactory = require('./potential');
-const rule = ruleFactory(kana);
+const rule = require('./potential');
 const apply = rule.apply;
 
 describe('grammar#potential', function () {
 
-    it('should export factory function', function () {
-        expect(typeof ruleFactory).to.equal('function');
+    it('should export object', function () {
         expect(typeof rule).to.equal('object');
     });
 
@@ -60,7 +58,7 @@ describe('grammar#potential', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('tukaeru');
             expect(type).to.equal('ichidan');
         });
@@ -71,7 +69,7 @@ describe('grammar#potential', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yakeru');
             expect(type).to.equal('ichidan');
         });
@@ -82,7 +80,7 @@ describe('grammar#potential', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('oyogeru');
             expect(type).to.equal('ichidan');
         });
@@ -93,7 +91,7 @@ describe('grammar#potential', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('simeseru');
             expect(type).to.equal('ichidan');
         });
@@ -104,7 +102,7 @@ describe('grammar#potential', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('materu');
             expect(type).to.equal('ichidan');
         });
@@ -115,7 +113,7 @@ describe('grammar#potential', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('sineru');
             expect(type).to.equal('ichidan');
         });
@@ -126,7 +124,7 @@ describe('grammar#potential', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yoberu');
             expect(type).to.equal('ichidan');
         });
@@ -137,7 +135,7 @@ describe('grammar#potential', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yomeru');
             expect(type).to.equal('ichidan');
         });
@@ -148,7 +146,7 @@ describe('grammar#potential', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('hasireru');
             expect(type).to.equal('ichidan');
         });

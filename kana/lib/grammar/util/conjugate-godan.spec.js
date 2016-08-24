@@ -2,16 +2,11 @@
 
 const expect = require('chai').expect;
 const kana = require('../../kana');
-const conjGodanFactory = require('./conjugate-godan');
-const conj = conjGodanFactory(kana);
+const conj = require('./conjugate-godan');
 
 describe('util#conjugate-godan', function () {
 
     it('should export function', function () {
-        expect(typeof conjGodanFactory).to.equal('function');
-    });
-
-    it('should return function that creates function', function () {
         expect(typeof conj).to.equal('function');
     });
 

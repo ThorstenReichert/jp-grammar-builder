@@ -4,13 +4,14 @@
   "description": "js hiragana class + grammar builder",
   "main": "index.js",
   "scripts": {
-    "test": "set NODE_ENV=test&& mocha \"lib/**/*.spec.js\""
+    "test": "set NODE_ENV=test&& mocha \"./**/*.spec.js\""
   },
   "author": "Thorsten Reichert",
   "license": "MIT",
   "devDependencies": {
     "chai": "3.5.0",
     "mocha": "2.5.3",
+    "proxyquire": "1.7.10",
     "sinon": "1.17.4"
   }
 }

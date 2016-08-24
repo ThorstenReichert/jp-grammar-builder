@@ -3,7 +3,6 @@
 const chars = require('./chars');
 const types = require('./types');
 const specials = require('./specials');
-let grammar = null;
 
 class Kana {
     /**
@@ -103,19 +102,6 @@ class Kana {
         this._word = this._word.concat(a);
 
         return this;
-    }
-
-    /**
-     * @param {string} rule apply grammar rule with that name to Kana object
-     * @return {Kana} resulting Kana object
-     */
-    applyRule(rule) {
-        if (grammar[rule]) {
-            this.require(grammar[rule].require);
-            return grammar[rule].apply(this);
-        } else {
-            throw new Error('kana#apply:Rule: rule ' + rule + ' not found');
-        }
     }
 
     clone() {
@@ -243,10 +229,8 @@ Object.defineProperty(Kana.prototype, 'word', {
     set: function (w) { this._word = w; }
 });
 
-grammar = require('./grammar')(kana);
-
 module.exports = kana;
+module.exports.class = Kana;
 module.exports.chars = chars;
 module.exports.types = types;
 module.exports.specials = specials;
-module.exports.grammar = grammar;

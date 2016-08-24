@@ -1,33 +1,30 @@
 'use strict';
 
-module.exports = function (kana) {
+const kana = require('../../kana');
+const conjGodan = require('../util/conjugate-godan');
+const conjIchidan = require('../util/conjugate-ichidan');
 
-    const conjGodan = require('../util/conjugate-godan')(kana);
-    const conjIchidan = require('../util/conjugate-ichidan')(kana);
+module.exports = {
+    require: ['godan', 'ichidan'],
 
-    return {
-        require: ['godan', 'ichidan'],
+    apply: function (phrase) {
+        switch(phrase.type) {
+            case 'ichidan':
+                phrase = conjIchidan(phrase, kana.na.i);
+                break;
 
-        apply: function (phrase) {
-            switch(phrase.type) {
-                case 'ichidan':
-                    phrase = conjIchidan(phrase, kana.na.i);
-                    break;
-
-                case 'godan':
-                    if (phrase.endsWith(kana.u)) {
-                        phrase.pop();
-                        phrase.add(kana.wa.na.i);
-                    }
-                    else {
-                        phrase = conjGodan(phrase, 'a', kana.na.i);
-                    }
-                    break;
-            }
-
-            phrase.type = 'adjectival';
-            return phrase;
+            case 'godan':
+                if (phrase.endsWith(kana.u)) {
+                    phrase.pop();
+                    phrase.add(kana.wa.na.i);
+                }
+                else {
+                    phrase = conjGodan(phrase, 'a', kana.na.i);
+                }
+                break;
         }
-    };
 
+        phrase.type = 'adjectival';
+        return phrase;
+    }
 };

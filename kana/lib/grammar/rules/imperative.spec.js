@@ -2,14 +2,12 @@
 
 const expect = require('chai').expect;
 const kana = require('../../kana');
-const ruleFactory = require('./imperative');
-const rule = ruleFactory(kana);
+const rule = require('./imperative');
 const apply = rule.apply;
 
 describe('grammar#imperative', function () {
 
-    it('should export factory function', function () {
-        expect(typeof ruleFactory).to.equal('function');
+    it('should export object', function () {
         expect(typeof rule).to.equal('object');
     });
 
@@ -60,7 +58,7 @@ describe('grammar#imperative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('tukae');
             expect(type).to.equal('imperative');
         });
@@ -71,7 +69,7 @@ describe('grammar#imperative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yake');
             expect(type).to.equal('imperative');
         });
@@ -82,7 +80,7 @@ describe('grammar#imperative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('oyoge');
             expect(type).to.equal('imperative');
         });
@@ -93,7 +91,7 @@ describe('grammar#imperative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('simese');
             expect(type).to.equal('imperative');
         });
@@ -104,7 +102,7 @@ describe('grammar#imperative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('mate');
             expect(type).to.equal('imperative');
         });
@@ -115,7 +113,7 @@ describe('grammar#imperative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('sine');
             expect(type).to.equal('imperative');
         });
@@ -126,7 +124,7 @@ describe('grammar#imperative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yobe');
             expect(type).to.equal('imperative');
         });
@@ -137,7 +135,7 @@ describe('grammar#imperative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('yome');
             expect(type).to.equal('imperative');
         });
@@ -148,7 +146,7 @@ describe('grammar#imperative', function () {
 
             let res = phrase.toString();
             let type = phrase.type;
-            
+
             expect(res).to.equal('hasire');
             expect(type).to.equal('imperative');
         });

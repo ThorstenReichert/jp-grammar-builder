@@ -3,16 +3,11 @@
 const expect = require('chai').expect;
 const kana = require('../../kana');
 const GrammarError = require('../../error/grammar-error');
-const assertIchidanFactory = require('./assert-ichidan');
-const assert = assertIchidanFactory(kana);
+const assert = require('./assert-ichidan');
 
 describe('util#assert-ichidan', function () {
 
     it('should export function', function () {
-        expect(typeof assertIchidanFactory).to.equal('function');
-    });
-
-    it('should return function that creates function', function () {
         expect(typeof assert).to.equal('function');
     });
 
