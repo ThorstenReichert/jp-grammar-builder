@@ -3,6 +3,13 @@
 const GrammarError = require('../../error/grammar-error');
 const kana = require('../../kana');
 
+/**
+ * Performs basic checks to see if argument fits "ichidan" type
+ *
+ * @param {Kana} phrase
+ * @throws {GrammarError}
+ */
+
 module.exports = function (phrase) {
     if (phrase.type !== 'ichidan') {
         throw new GrammarError('Ichidan conjugation requires type "ichidan", got "' + phrase.type + '".');

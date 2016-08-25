@@ -3,6 +3,13 @@
 const GrammarError = require('../../error/grammar-error');
 const kana = require('../../kana');
 
+/**
+ * Performs basic checks to see if argument fits "godan" type
+ *
+ * @param {Kana} phrase
+ * @throws {GrammarError}
+ */
+
 module.exports =  function (phrase) {
     if (phrase.type !== 'godan') {
         throw new GrammarError('Godan conjugation requires type "godan", got "' + phrase.type + '".');
