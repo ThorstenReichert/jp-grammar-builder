@@ -151,6 +151,28 @@ describe('grammar#passive', function () {
             expect(type).to.equal('ichidan');
         });
 
+        it('should conjugate kuru (kuru) to korareru (ichidan)', function () {
+            let phrase = kana.kuru.ku.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('korareru');
+            expect(type).to.equal('ichidan');
+        });
+
+        it('should conjugate suru (suru) to sareru (ichidan)', function () {
+            let phrase = kana.suru.su.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('sareru');
+            expect(type).to.equal('ichidan');
+        });
+
     });
 
 });

@@ -29,6 +29,14 @@ describe('grammar#i-form', function () {
             expect(rule.require.indexOf('godan')).to.be.at.least(0);
         });
 
+        it('should contain kuru', function () {
+            expect(rule.require.indexOf('kuru')).to.be.at.least(0);
+        });
+
+        it('should contain suru', function () {
+            expect(rule.require.indexOf('suru')).to.be.at.least(0);
+        });
+
     });
 
     describe('.apply', function () {
@@ -148,6 +156,28 @@ describe('grammar#i-form', function () {
             let type = phrase.type;
 
             expect(res).to.equal('hasiri');
+            expect(type).to.equal('i-form');
+        });
+
+        it('should conjugate kuru (kuru) to ki (i-form)', function () {
+            let phrase = kana.kuru.ku.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('ki');
+            expect(type).to.equal('i-form');
+        });
+
+        it('should conjugate suru (suru) to si (i-form)', function () {
+            let phrase = kana.suru.su.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('si');
             expect(type).to.equal('i-form');
         });
 

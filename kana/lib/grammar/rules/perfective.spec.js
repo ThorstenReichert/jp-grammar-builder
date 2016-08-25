@@ -101,6 +101,30 @@ describe('grammar#perfective', function () {
             expect(res).to.equal('motta');
         });
 
+        it('should conjugate yasui (adjectival) to yasukatta', function () {
+            let phrase = kana.adjectival.ya.su.i;
+            let res = apply(phrase).toString();
+            expect(res).to.equal('yasukatta');
+        });
+
+        it('should conjugate kantan (nominal) to kantandatta', function () {
+            let phrase = kana.nominal.ka.n.ta.n;
+            let res = apply(phrase).toString();
+            expect(res).to.equal('kantandatta');
+        });
+
+        it('should conjugate kuru (kuru) to kita', function () {
+            let phrase = kana.kuru.ku.ru;
+            let res = apply(phrase).toString();
+            expect(res).to.equal('kita');
+        });
+
+        it('shoult conjugate suru (suru) to sita', function () {
+            let phrase = kana.suru.su.ru;
+            let res = apply(phrase).toString();
+            expect(res).to.equal('sita');
+        });
+
     });
 
 });

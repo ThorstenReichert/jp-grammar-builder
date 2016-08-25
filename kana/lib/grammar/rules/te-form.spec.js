@@ -29,6 +29,22 @@ describe('grammar#te-form', function () {
             expect(rule.require.indexOf('godan')).to.be.at.least(0);
         });
 
+        it('should contain adjectival', function () {
+            expect(rule.require.indexOf('adjectival')).to.be.at.least(0);
+        });
+
+        it('should contain nominal', function () {
+            expect(rule.require.indexOf('nominal')).to.be.at.least(0);
+        });
+
+        it('should contain godan', function () {
+            expect(rule.require.indexOf('kuru')).to.be.at.least(0);
+        });
+
+        it('should contain godan', function () {
+            expect(rule.require.indexOf('suru')).to.be.at.least(0);
+        });
+
     });
 
     describe('.apply', function () {
@@ -148,6 +164,50 @@ describe('grammar#te-form', function () {
             let type = phrase.type;
 
             expect(res).to.equal('hasitte');
+            expect(type).to.equal('te-form');
+        });
+
+        it('should conjugate kuru (kuru) to kite (te-form)', function () {
+            let phrase = kana.kuru.ku.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('kite');
+            expect(type).to.equal('te-form');
+        });
+
+        it('should conjugate suru (suru) to site (te-form)', function () {
+            let phrase = kana.suru.su.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('site');
+            expect(type).to.equal('te-form');
+        });
+
+        it('should conjugate yasui (adjectival) to yasukute (te-form)', function () {
+            let phrase = kana.adjectival.ya.su.i;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('yasukute');
+            expect(type).to.equal('te-form');
+        });
+
+        it('should conjugate kantan (nominal) to kantande (te-form)', function () {
+            let phrase = kana.nominal.ka.n.ta.n;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('kantande');
             expect(type).to.equal('te-form');
         });
 

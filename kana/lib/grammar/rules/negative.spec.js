@@ -21,12 +21,28 @@ describe('grammar#negative', function () {
             expect(Array.isArray(rule.require)).to.be.true;
         });
 
+        it('should contain adjectival', function () {
+            expect(rule.require.indexOf('adjectival')).to.be.at.least(0);
+        });
+
         it('should contain ichidan', function () {
             expect(rule.require.indexOf('ichidan')).to.be.at.least(0);
         });
 
         it('should contain godan', function () {
             expect(rule.require.indexOf('godan')).to.be.at.least(0);
+        });
+
+        it('should contain kuru', function () {
+            expect(rule.require.indexOf('kuru')).to.be.at.least(0);
+        });
+
+        it('should contain nominal', function () {
+            expect(rule.require.indexOf('nominal')).to.be.at.least(0);
+        });
+
+        it('should contain suru', function () {
+            expect(rule.require.indexOf('suru')).to.be.at.least(0);
         });
 
     });
@@ -148,6 +164,50 @@ describe('grammar#negative', function () {
             let type = phrase.type;
 
             expect(res).to.equal('hasiranai');
+            expect(type).to.equal('adjectival');
+        });
+
+        it('should conjugate kuru (kuru) to konai', function () {
+            let phrase = kana.kuru.ku.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('konai');
+            expect(type).to.equal('adjectival');
+        });
+
+        it('should conjugate suru (suru) to sinai', function () {
+            let phrase = kana.suru.su.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('sinai');
+            expect(type).to.equal('adjectival');
+        });
+
+        it('should conjugate itai (adjectival) to ikunai', function () {
+            let phrase = kana.adjectival.i.ta.i;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('itakunai');
+            expect(type).to.equal('adjectival');
+        });
+
+        it('should conjugate kantan (nominal) to kantanzyanai', function () {
+            let phrase = kana.nominal.ka.n.ta.n;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('kantanzyanai');
             expect(type).to.equal('adjectival');
         });
 
