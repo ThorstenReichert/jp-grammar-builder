@@ -45,7 +45,7 @@ describe('grammar#progressive', function () {
             expect(typeof apply).to.equal('function');
         });
 
-        it('should conjugate hayai (adjectival) to hayakunaru (ichidan)', function () {
+        it('should conjugate hayai (adjectival) to hayakunaru (godan)', function () {
             let phrase = kana.adjectival.ha.ya.i;
             phrase = apply(phrase);
 
@@ -53,10 +53,10 @@ describe('grammar#progressive', function () {
             let type = phrase.type;
 
             expect(res).to.equal('hayakunaru');
-            expect(type).to.equal('ichidan');
+            expect(type).to.equal('godan');
         });
 
-        it('should conjugate tuyoku (adverb) to tuyokunaru (ichidan)', function () {
+        it('should conjugate tuyoku (adverb) to tuyokunaru (godan)', function () {
             let phrase = kana.adverb.tu.yo.ku;
             phrase = apply(phrase);
 
@@ -64,10 +64,10 @@ describe('grammar#progressive', function () {
             let type = phrase.type;
 
             expect(res).to.equal('tuyokunaru');
-            expect(type).to.equal('ichidan');
+            expect(type).to.equal('godan');
         });
 
-        it('should conjugate kirei (nominal) to kireininaru (ichidan)', function () {
+        it('should conjugate kirei (nominal) to kireininaru (godan)', function () {
             let phrase = kana.nominal.ki.re.i;
             phrase = apply(phrase);
 
@@ -75,7 +75,7 @@ describe('grammar#progressive', function () {
             let type = phrase.type;
 
             expect(res).to.equal('kireininaru');
-            expect(type).to.equal('ichidan');
+            expect(type).to.equal('godan');
         });
 
     });

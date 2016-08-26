@@ -35,7 +35,7 @@ module.exports = {
                 throw new GrammarError('Conjugation not implemented for type "' + phrase.type + '"');
         }
 
-        phrase.type = 'ichidan';
+        phrase.type = 'godan';
         return phrase;
     }
 
