@@ -18,11 +18,22 @@
       <label class="control-label col-sm-2" for="kana-type">Type</label>
       <div class="col-sm-2">
         <select class="form-control" id="kana-type" tabindex="2" value.bind="type">
-          <option></option>
-          <option value="ichidan">Ichidan</option>
-          <option value="godan">Godan</option>
-          <option value="adjectival">Adjectival</option>
-          <option value="nominal">Nominal</option>
+          <option value=""></option>
+          <optgroup label="Main">
+            <option value="adjectival">Adjectival</option>
+            <option value="adverb">Adverb</option>
+            <option value="nominal">Nominal</option>
+            <option value="godan">Godan-Verb</option>
+            <option value="ichidan">Ichidan-Verb</option>
+          </optgroup>
+          <optgroup label="Specials">
+            <option value="kuru">&#12367;&#12427;-Verb</option>
+            <option value="suru">&#12377;&#12427;-Verb</option>
+          </optgroup>
+          <optgroup label="Auxilliary">
+            <option value="i-form">&#12356;-Form</option>
+            <option value="te-form">&#12390;-Form</option>
+          </optgroup>
         </select>
       </div>
       <div class="col-sm-2 col-sm-offset-4">
@@ -37,8 +48,20 @@
       <div class="col-sm-2 ${$first ? '' : 'col-sm-offset-2'}">
         <select class="form-control" tabindex="${$index + 2}" value.bind="item.id">
           <option value=""></option>
-          <option value="stem">Verb stem</option>
-          <option value="distal">Distal form</option>
+          <option value="adverb">Adverb</option>
+          <option value="causative">Causative</option>
+          <option value="desire">Desire</option>
+          <option value="i-form">&#12356;-Form</option>
+          <option value="imperative">Imperative</option>
+          <option value="naru">-&#12394;&#12427; Form</option>
+          <option value="negative">Negative</option>
+          <option value="passive">Passive</option>
+          <option value="perfective">Perfective</option>
+          <option value="potential">Potential</option>
+          <option value="progressive">Progressive</option>
+          <option value="suru">-&#12377;&#12427; Form</option>
+          <option value="te-form">&#12390;-Form</option>
+          <option value="volitional">Volitional</option>
         </select>
       </div>
       <div class="col-sm-6" if.bind="item.hasResult">
