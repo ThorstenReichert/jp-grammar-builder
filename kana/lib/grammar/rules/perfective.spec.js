@@ -119,7 +119,7 @@ describe('grammar#perfective', function () {
             expect(res).to.equal('kita');
         });
 
-        it('shoult conjugate suru (suru) to sita', function () {
+        it('should conjugate suru (suru) to sita', function () {
             let phrase = kana.suru.su.ru;
             let res = apply(phrase).toString();
             expect(res).to.equal('sita');
