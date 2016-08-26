@@ -5,8 +5,6 @@ const kana = require('../../kana');
 const assertGodan = require('./assert-godan');
 
 module.exports = function (phrase, conj, append) {
-    assertGodan(phrase);
-
     if (typeof conj !== 'string') {
         throw new TypeError('expected second argument to have type string');
     }
