@@ -4,9 +4,10 @@ const kana = require('../../kana');
 const GrammarError = require('../../error/grammar-error');
 const conjGodan = require('../util/conjugate-godan');
 const conjIchidan = require('../util/conjugate-ichidan');
+const assert = require('../util/assert-type');
 
 module.exports = {
-    require: ['adjectival', 'godan', 'ichidan', 'kuru','nominal', 'suru'],
+    require: ['godan', 'ichidan', 'kuru', 'suru'],
 
     /**
      * Imperative conjugation on argument
@@ -18,12 +19,29 @@ module.exports = {
 
     apply: function (phrase) {
         switch(phrase.type) {
+
             case 'ichidan':
+                assert['ichidan'](phrase);
                 phrase = conjIchidan(phrase, kana.ro);
                 break;
 
             case 'godan':
+                assert['godan'](phrase);
                 phrase = conjGodan(phrase, 'e');
+                break;
+
+            case 'kuru':
+                assert['kuru'](phrase);
+                phrase.pop();
+                phrase.pop();
+                phrase.add(kana.ko.i);
+                break;
+
+            case 'suru':
+                assert['suru'](phrase);
+                phrase.pop();
+                phrase.pop();
+                phrase.add(kana.si.ro);
                 break;
 
             default:

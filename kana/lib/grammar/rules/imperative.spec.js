@@ -29,6 +29,14 @@ describe('grammar#imperative', function () {
             expect(rule.require.indexOf('godan')).to.be.at.least(0);
         });
 
+        it('should contain kuru', function () {
+            expect(rule.require.indexOf('kuru')).to.be.at.least(0);
+        });
+
+        it('should contain suru', function () {
+            expect(rule.require.indexOf('suru')).to.be.at.least(0);
+        });
+
     });
 
     describe('.apply', function () {
@@ -148,6 +156,28 @@ describe('grammar#imperative', function () {
             let type = phrase.type;
 
             expect(res).to.equal('hasire');
+            expect(type).to.equal('imperative');
+        });
+
+        it('should conjugate kuru (kuru) to koi (imperative)', function () {
+            let phrase = kana.kuru.ku.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('koi');
+            expect(type).to.equal('imperative');
+        });
+
+        it('should conjugate suru (suru) to siro (imperative)', function () {
+            let phrase = kana.suru.su.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('siro');
             expect(type).to.equal('imperative');
         });
 

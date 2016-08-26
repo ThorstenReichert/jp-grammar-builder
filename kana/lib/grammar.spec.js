@@ -10,8 +10,16 @@ describe('grammar', function () {
         expect(typeof grammar).to.equal('object');
     });
 
+    it('should have rule "adverb"', function () {
+        expect(grammar['adverb']).to.exist;
+    });
+
     it('should have rule "causative"', function () {
         expect(grammar['causative']).to.exist;
+    });
+
+    it('should have rule "desire"', function () {
+        expect(grammar['desire']).to.exist;
     });
 
     it('should have rule "i-form"', function () {
@@ -20,6 +28,10 @@ describe('grammar', function () {
 
     it('should have rule "imperative"', function () {
         expect(grammar['imperative']).to.exist;
+    });
+
+    it('should have rule "naru"', function () {
+        expect(grammar['naru']).to.exist;
     });
 
     it('should have rule "negative"', function () {
@@ -36,6 +48,14 @@ describe('grammar', function () {
 
     it('should have rule "potential"', function () {
         expect(grammar['potential']).to.exist;
+    });
+
+    it('should have rule "progressive"', function () {
+        expect(grammar['progressive']).to.exist;
+    });
+
+    it('should have rule "suru"', function () {
+        expect(grammar['suru']).to.exist;
     });
 
     it('should have rule "te-form"', function () {

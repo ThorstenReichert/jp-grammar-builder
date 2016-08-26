@@ -20,10 +20,12 @@ module.exports = {
     apply: function (phrase) {
         switch(phrase.type) {
             case 'ichidan':
+                assert['ichidan'](phrase);
                 phrase = conjIchidan(phrase, null);
                 break;
 
             case 'godan':
+                assert['godan'](phrase);
                 phrase = conjGodan(phrase, 'i');
                 break;
 

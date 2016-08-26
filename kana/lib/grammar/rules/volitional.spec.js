@@ -21,12 +21,28 @@ describe('grammar#volitional', function () {
             expect(Array.isArray(rule.require)).to.be.true;
         });
 
+        it('should contain adjectival', function () {
+            expect(rule.require.indexOf('adjectival')).to.be.at.least(0);
+        });
+
         it('should contain ichidan', function () {
             expect(rule.require.indexOf('ichidan')).to.be.at.least(0);
         });
 
         it('should contain godan', function () {
             expect(rule.require.indexOf('godan')).to.be.at.least(0);
+        });
+
+        it('should contain kuru', function () {
+            expect(rule.require.indexOf('kuru')).to.be.at.least(0);
+        });
+
+        it('should contain nominal', function () {
+            expect(rule.require.indexOf('nominal')).to.be.at.least(0);
+        });
+
+        it('should contain suru', function () {
+            expect(rule.require.indexOf('suru')).to.be.at.least(0);
         });
 
     });
@@ -148,6 +164,50 @@ describe('grammar#volitional', function () {
             let type = phrase.type;
 
             expect(res).to.equal('hasirou');
+            expect(type).to.equal('volitional');
+        });
+
+        it('should conjugate kuru (kuru) to koyou (volitional)', function () {
+            let phrase = kana.kuru.ku.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('koyou');
+            expect(type).to.equal('volitional');
+        });
+
+        it('should conjugate suru (suru) to siyou (volitional)', function () {
+            let phrase = kana.suru.su.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('siyou');
+            expect(type).to.equal('volitional');
+        });
+
+        it('should conjugate tikai (adjectival) to tikakarou (volitional)', function () {
+            let phrase = kana.adjectival.ti.ka.i;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('tikakarou');
+            expect(type).to.equal('volitional');
+        });
+
+        it('should conjugate suki (nominal) to sukidarou (volitional)', function () {
+            let phrase = kana.nominal.su.ki;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('sukidarou');
             expect(type).to.equal('volitional');
         });
 

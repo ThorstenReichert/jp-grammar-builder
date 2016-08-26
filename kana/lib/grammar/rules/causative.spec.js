@@ -29,6 +29,14 @@ describe('grammar#causative', function () {
             expect(rule.require.indexOf('godan')).to.be.at.least(0);
         });
 
+        it('should contain kuru', function () {
+            expect(rule.require.indexOf('kuru')).to.be.at.least(0);
+        });
+
+        it('should contain suru', function () {
+            expect(rule.require.indexOf('suru')).to.be.at.least(0);
+        });
+
     });
 
     describe('.apply', function () {
@@ -148,6 +156,28 @@ describe('grammar#causative', function () {
             let type = phrase.type;
 
             expect(res).to.equal('hasiraseru');
+            expect(type).to.equal('ichidan');
+        });
+
+        it('should conjugate kuru (kuru) to kosaseru (ichidan)', function () {
+            let phrase = kana.kuru.ku.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('kosaseru');
+            expect(type).to.equal('ichidan');
+        });
+
+        it('should conjugate suru (suru) to saseru (ichidan)', function () {
+            let phrase = kana.suru.su.ru;
+            phrase = apply(phrase);
+
+            let res = phrase.toString();
+            let type = phrase.type;
+
+            expect(res).to.equal('saseru');
             expect(type).to.equal('ichidan');
         });
 

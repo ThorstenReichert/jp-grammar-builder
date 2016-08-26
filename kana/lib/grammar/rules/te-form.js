@@ -28,10 +28,12 @@ module.exports = {
                 break;
 
             case 'ichidan':
+                assert['ichidan'](phrase);
                 phrase = conjIchidan(phrase, kana.te);
                 break;
 
             case 'godan':
+                assert['godan'](phrase);
                 phrase.add(map(phrase.pop(), {
                     u: kana.t.te,
                     ku: kana.i.te,

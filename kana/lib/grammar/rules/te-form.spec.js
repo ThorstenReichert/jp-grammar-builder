@@ -37,11 +37,11 @@ describe('grammar#te-form', function () {
             expect(rule.require.indexOf('nominal')).to.be.at.least(0);
         });
 
-        it('should contain godan', function () {
+        it('should contain kuru', function () {
             expect(rule.require.indexOf('kuru')).to.be.at.least(0);
         });
 
-        it('should contain godan', function () {
+        it('should contain suru', function () {
             expect(rule.require.indexOf('suru')).to.be.at.least(0);
         });
 
