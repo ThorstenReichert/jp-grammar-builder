@@ -6,5 +6,6 @@ module.exports = [
     'godan', 'ichidan', 'suru', 'kuru',
     'distal',
     'adjectival',
-    'nominal'
+    'nominal',
+    'adverb'
 ];
