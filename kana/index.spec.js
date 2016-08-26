@@ -31,7 +31,6 @@ describe('applyRule', function () {
 
     it('should call apply of rule once', function () {
         let phrase = kana.ta.be.ru.applyRule('testrule');
-        console.log(typeof grammarStub['testrule'].apply)
         expect(grammarStub['testrule'].apply.calledOnce).to.be.true;
     });
 
