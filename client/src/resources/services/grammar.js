@@ -131,7 +131,8 @@ export class GrammarService {
                 }
                 i++;
             });
-        });
+        },
+        error => {});
     }
 }
 

@@ -1,0 +1,6 @@
+<template>
+  <div class="alert alert-danger col-sm-8 col-sm-offset-2" if.bind="ErrorService.hasError">
+    <span if.bind="ErrorService.code">${ErrorService.code}: </span>
+    <span>${ErrorService.message}</span>
+  </div>
+</template>
