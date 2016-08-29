@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const KanaError = require('../error/kana-error');
 
 module.exports = function (wagner) {
     return wagner.invoke(function (kana) {
@@ -21,6 +22,7 @@ module.exports = function (wagner) {
                     req.body.grammar = [req.body.grammar];
                 }
 
+                let error = null;
                 try {
                     _.each(req.body.grammar, function (id) {
                         if (id && typeof id === 'string' && id !== '') {
@@ -34,10 +36,11 @@ module.exports = function (wagner) {
                     });
                 }
                 catch(err) {
-                    req.result[req.result.length - 1].error = err.message;
+                    error = new KanaError(err.message);
+                    // req.result[req.result.length - 1].error = err.message;
                 }
                 finally {
-                    return next();
+                    return next(error);
                 }
             } else {
                 return next(new Error('req.kana not found'));
