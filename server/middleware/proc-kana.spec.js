@@ -105,24 +105,6 @@ describe('middleware#proc-kana', function () {
         });
     });
 
-    it('should set error message for kana errors', function (done) {
-        let msg = 'testerrormessage';
-        let stub = sinon.stub().throws({message: msg});
-        mocks.req.kana.applyRule = stub;
-        mocks.req.body.grammar = 'negative';
-
-        procKana(mocks.req, null, function (err) {
-            expect(err).to.not.exist;
-
-            let res = mocks.req.result;
-            expect(res.length).to.equal(2);
-            expect(stub.calledOnce).to.be.true;
-            expect(res[1].error).to.exist;
-            expect(res[1].error).to.equal(msg);
-            done();
-        });
-    });
-
     it('should skip empty rules', function (done) {
         let one = kana.ta.be;
         let two = kana.ta.be.ra.re.ru;
