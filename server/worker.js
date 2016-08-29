@@ -18,16 +18,16 @@ wagner.factory('kana', function () {
     return kana;
 });
 
-// setup logging
-morgan.token('id', function getId(req) {
-    return id;
-});
-app.use(morgan(':id | :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]'));
-
 // setup client
 app.use('/client', express.static(
     path.join(__dirname, '/../client')
 ));
+
+// setup logging (ignore client requests)
+morgan.token('id', function getId(req) {
+    return id;
+});
+app.use(morgan(':id | :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]'));
 
 // setup api
 app.use('/api', require('./api')(wagner));
@@ -46,5 +46,5 @@ process.on('uncaughtException', function (err) {
 
 // start server
 app.listen(port, function () {
-    console.log('cluster worker ' + id + ' listening on port ' + port);
+    console.log(id + ' | listening on port ' + port);
 });
