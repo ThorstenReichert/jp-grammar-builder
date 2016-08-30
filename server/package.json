@@ -21,6 +21,7 @@
     "lodash": "4.13.1",
     "memwatch-next": "0.3.0",
     "morgan": "1.7.0",
+    "serve-favicon": "2.3.0",
     "wagner-core": "0.2.0"
   },
   "devDependencies": {

@@ -3,6 +3,7 @@
 const cluster = require('cluster');
 const express = require('express');
 const compression = require('compression');
+const favicon = require('serve-favicon');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
@@ -49,6 +50,11 @@ app.use(helmet.noSniff());
 
 // setup compression
 app.use(compression());
+
+// setup favicon
+app.use(favicon(
+    path.join(__dirname, '../client/flag.ico')
+));
 
 // setup client
 app.use('/client', express.static(
