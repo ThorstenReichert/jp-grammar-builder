@@ -4,6 +4,7 @@ const kana = require('./lib/kana');
 const Kana = require('./lib/kana').class;
 const grammar = require('./lib/grammar');
 const GrammarError = require('./lib/error/grammar-error');
+const KanaError = require('./lib/error/kana-error');
 
  // Attach applyRule memberfunction to Kana class
 
@@ -21,3 +22,5 @@ Kana.prototype.applyRule = function (rule) {
 };
 
 module.exports = kana;
+module.exports.GrammarError = GrammarError;
+module.exports.KanaError = KanaError;
