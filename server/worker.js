@@ -2,6 +2,7 @@
 
 const cluster = require('cluster');
 const express = require('express');
+const compression = require('compression');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
@@ -45,6 +46,9 @@ app.use(helmet.frameguard({ action: 'deny' }));
 app.use(helmet.hidePoweredBy());
 app.use(helmet.ieNoOpen());
 app.use(helmet.noSniff());
+
+// setup compression
+app.use(compression());
 
 // setup client
 app.use('/client', express.static(
