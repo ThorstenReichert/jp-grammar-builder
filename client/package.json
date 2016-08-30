@@ -6,6 +6,11 @@
     "type": "???",
     "url": "???"
   },
+  "scripts": {
+    "build": "au build",
+    "preinstall": "npm install -g aurelia-cli",
+    "postinstall": "npm run build"
+  },
   "license": "MIT",
   "dependencies": {
     "aurelia-animator-css": "^1.0.0-rc.1.0.0",

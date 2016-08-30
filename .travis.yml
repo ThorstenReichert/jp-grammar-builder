@@ -11,6 +11,7 @@ addons:
 install:
     - cd server && npm install && cd ..
     - cd kana && npm install && cd ..
+    - cd client && npm install && cd ..
 script:
     - cd server && npm test && cd ..
     - cd kana && npm test && cd ..
