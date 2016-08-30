@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 const hpp = require('hpp');
 const kanaErrorHandler = require('./middleware/kana-error-handler');
+const grammarErrorHandler = require('./middleware/grammar-error-handler');
 const errorHandler = require('./middleware/error-handler');
 
 module.exports = function (wagner) {
@@ -22,6 +23,7 @@ module.exports = function (wagner) {
         parseKana,
         procKana,
         kanaErrorHandler,
+        grammarErrorHandler,
         errorHandler,
         function (req, res) {
             res.status(200).json(req.result);

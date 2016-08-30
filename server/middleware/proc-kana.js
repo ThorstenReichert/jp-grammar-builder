@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-const KanaError = require('../error/kana-error');
+const GrammarError = require('../../kana').GrammarError;
 
 module.exports = function (wagner) {
     return wagner.invoke(function (kana) {
@@ -36,8 +36,7 @@ module.exports = function (wagner) {
                     });
                 }
                 catch(err) {
-                    error = new KanaError(err.message);
-                    // req.result[req.result.length - 1].error = err.message;
+                    error = err;
                 }
                 finally {
                     return next(error);

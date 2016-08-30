@@ -1,6 +1,6 @@
 'use strict';
 
-const KanaError = require('../error/kana-error');
+const KanaError = require('../../kana').KanaError;
 
 module.exports = function (wagner) {
     return wagner.invoke(function (kana) {
@@ -35,7 +35,7 @@ module.exports = function (wagner) {
                         return next(error);
                     }
                 } else {
-                    return next(new KanaError('invalid kana argument given'));
+                    return next(new Error('invalid kana argument given'));
                 }
             } else {
                 return next(new Error('no kana argument given'));
