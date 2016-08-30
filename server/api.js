@@ -3,6 +3,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const router = express.Router();
+const hpp = require('hpp');
 const kanaErrorHandler = require('./middleware/kana-error-handler');
 const errorHandler = require('./middleware/error-handler');
 
@@ -17,6 +18,7 @@ module.exports = function (wagner) {
     router.all('/kana',
         bodyParser.urlencoded({extended: false}),
         bodyParser.json(),
+        hpp(),
         parseKana,
         procKana,
         kanaErrorHandler,

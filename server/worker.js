@@ -2,6 +2,7 @@
 
 const cluster = require('cluster');
 const express = require('express');
+const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
 const wagner = require('wagner-core');
@@ -17,6 +18,33 @@ const kana = require('../kana');
 wagner.factory('kana', function () {
     return kana;
 });
+
+// setup memory leak detection
+const memwatch = require('memwatch-next');
+const fs = require('fs');
+
+const logfile = path.join(__dirname, '/log/memwatch.log');
+
+memwatch.on('leak', function (info) {
+    fs.appendFile(logfile, info, function (err) {
+        if (err) {
+            throw err;
+        }
+
+        console.warn('Memory leak detected. Wrote info to ' + logfile);
+    });
+});
+
+memwatch.on('stats', function (stats) {
+    console.log(stats);
+});
+
+// setup helmet
+app.use(helmet.xssFilter());
+app.use(helmet.frameguard({ action: 'deny' }));
+app.use(helmet.hidePoweredBy());
+app.use(helmet.ieNoOpen());
+app.use(helmet.noSniff());
 
 // setup client
 app.use('/client', express.static(

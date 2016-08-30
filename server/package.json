@@ -14,8 +14,11 @@
     "express": "4.14.0",
     "foreman": "1.4.1",
     "forky": "0.3.0",
+    "helmet": "2.1.2",
+    "hpp": "0.2.1",
     "http-status": "0.2.3",
     "lodash": "4.13.1",
+    "memwatch-next": "0.3.0",
     "morgan": "1.7.0",
     "wagner-core": "0.2.0"
   },
