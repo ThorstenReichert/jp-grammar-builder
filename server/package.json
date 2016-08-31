@@ -22,7 +22,8 @@
     "memwatch-next": "0.3.0",
     "morgan": "1.7.0",
     "serve-favicon": "2.3.0",
-    "wagner-core": "0.2.0"
+    "wagner-core": "0.2.0",
+    "winston": "2.2.0"
   },
   "devDependencies": {
     "async": "2.0.1",
