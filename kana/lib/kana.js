@@ -3,6 +3,7 @@
 const chars = require('./chars');
 const types = require('./types');
 const specials = require('./specials');
+const GrammarError = require('./error/grammar-error');
 
 class Kana {
     /**
@@ -148,13 +149,13 @@ class Kana {
     require(types) {
         if (!Array.isArray(types)) {
             if ('string' !== typeof types) {
-                throw new Error('kana#require: invalid type requirements');
+                throw new GrammarError('kana#require: invalid type requirements');
             }
             types = [types];
         }
 
         if (-1 === types.indexOf(this.type)) {
-            throw new Error('kana#require: type ' + this._type + ' does not match requirements: ' + types.join(','));
+            throw new GrammarError('kana#require: type ' + this._type + ' does not match requirements: ' + types.join(','));
         }
     }
 
