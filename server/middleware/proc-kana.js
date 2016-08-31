@@ -4,7 +4,8 @@ const _ = require('lodash');
 const GrammarError = require('../../kana').GrammarError;
 
 module.exports = function (wagner) {
-    return wagner.invoke(function (kana) {
+    return wagner.invoke(function (logger, kana) {
+
         return function (req, res, next) {
             let grammar = req.body.grammar;
 
@@ -29,6 +30,7 @@ module.exports = function (wagner) {
                             let i = req.result.push({
                                 rule: id
                             });
+                            logger.debug('applying rule "' + id + '" to ' + req.kana.toString() + ' (' + req.kana.type + ')');
                             req.kana = req.kana.applyRule(id);
                             req.result[i-1].kana = req.kana.clone().toArray();
                             req.result[i-1].type = req.kana.type;
@@ -45,5 +47,6 @@ module.exports = function (wagner) {
                 return next(new Error('req.kana not found'));
             }
         };
+
     });
 };

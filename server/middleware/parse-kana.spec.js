@@ -15,6 +15,11 @@ describe('middleware#parse-kana', function () {
         wagner.factory('kana', function () {
             return kana;
         });
+        wagner.factory('logger', function () {
+            return {
+                debug: function () {}
+            };
+        });
 
         parseKana = require('./parse-kana')(wagner);
     });
@@ -53,6 +58,11 @@ describe('middleware#parse-kana', function () {
         wagner.factory('kana', function () {
             return {
                 create: stub
+            };
+        });
+        wagner.factory('logger', function () {
+            return {
+                debug: function () {}
             };
         });
         parseKana = require('./parse-kana')(wagner);

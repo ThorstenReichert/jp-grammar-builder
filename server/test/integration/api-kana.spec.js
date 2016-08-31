@@ -18,6 +18,11 @@ describe('api/kana', function () {
         wagner.factory('kana', function () {
             return kana;
         });
+        wagner.factory('logger', function () {
+            return {
+                debug: function () {}
+            };
+        });
 
         parseKana = require('../../middleware/parse-kana')(wagner);
         procKana = require('../../middleware/proc-kana')(wagner);

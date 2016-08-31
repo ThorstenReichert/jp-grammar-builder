@@ -17,6 +17,11 @@ describe('middleware#proc-kana', function () {
         wagner.factory('kana', function () {
             return kana;
         });
+        wagner.factory('logger', function () {
+            return {
+                debug: function () {}
+            };
+        });
 
         procKana = require('./proc-kana')(wagner);
     });

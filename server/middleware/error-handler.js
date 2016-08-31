@@ -2,12 +2,18 @@
 
 const httpStatus = require('http-status');
 
-module.exports = function (err, req, res, next) {
-    if (!err) {
-        return next();
-    }
+module.exports = function (wagner) {
+    return wagner.invoke(function (logger) {
 
-    return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-        message: 'Internal Server Error'
+        return function (err, req, res, next) {
+            if (!err) {
+                return next();
+            }
+
+            logger.error(err);
+            return res.status(httpStatus.INTERNAL_SERVER_ERROR).json(err);
+        };
+
     });
 };
+

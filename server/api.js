@@ -4,13 +4,13 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const router = express.Router();
 const hpp = require('hpp');
-const kanaErrorHandler = require('./middleware/kana-error-handler');
-const grammarErrorHandler = require('./middleware/grammar-error-handler');
-const errorHandler = require('./middleware/error-handler');
 
 module.exports = function (wagner) {
     const parseKana = require('./middleware/parse-kana')(wagner);
     const procKana = require('./middleware/proc-kana')(wagner);
+    const kanaErrorHandler = require('./middleware/kana-error-handler')(wagner);
+    const grammarErrorHandler = require('./middleware/grammar-error-handler')(wagner);
+    const errorHandler = require('./middleware/error-handler')(wagner);
 
     router.get('/ping', function (req, res) {
         res.status(200).send();

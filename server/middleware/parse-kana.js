@@ -3,7 +3,7 @@
 const KanaError = require('../../kana').KanaError;
 
 module.exports = function (wagner) {
-    return wagner.invoke(function (kana) {
+    return wagner.invoke(function (logger, kana) {
 
         /**
          * expects req.body to be of form
@@ -27,6 +27,7 @@ module.exports = function (wagner) {
                     let error = null;
                     try {
                         req.kana = kana.create(body.kana, body.type);
+                        logger.debug('parsed kana: ' + req.kana.toString() + ' (' + req.kana.type + ')');
                     }
                     catch(err) {
                         error = err;
