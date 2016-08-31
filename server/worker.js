@@ -38,11 +38,8 @@ const logger = new winston.Logger({
         new (winston.transports.Console)({
             name: 'console',
             level: 'debug',
-            formatter: function (options) {
-                return id + ' | ' + options.level + ': ' +
-                    (undefined !== options.message ? options.message : '') +
-                    (options.meta && Object.keys(options.meta).length ? '\n\t'+ JSON.stringify(options.meta) : '' );
-            }
+            label: id,
+            colorize: true
         }),
         new (winston.transports.File)({
             name: 'file',
@@ -60,6 +57,7 @@ const logger = new winston.Logger({
         })
     ]
 });
+
 logger.info('setup logging');
 
 // setup DI
@@ -125,11 +123,7 @@ const connectionDevLogger = new winston.Logger({
             handleExceptions: true,
             json: false,
             colorize: true,
-            formatter: function (options) {
-                return id + ' | ' + options.level + ': ' +
-                    (undefined !== options.message ? options.message : '') +
-                    (options.meta && Object.keys(options.meta).length ? '\n\t'+ JSON.stringify(options.meta) : '' );
-            }
+            label: id
         })
     ]
 });
