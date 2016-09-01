@@ -13,8 +13,7 @@ const winston = require('winston');
 const app = express();
 
 // config
-const port = process.env.NODE_PORT || 3000;
-const id = cluster.worker.id;
+const config = require('./config');
 
 // setup memory leak detection
 const memwatch = require('memwatch-next');
@@ -38,7 +37,7 @@ const logger = new winston.Logger({
         new (winston.transports.Console)({
             name: 'console',
             level: 'debug',
-            label: id,
+            label: config.node.id,
             colorize: true
         }),
         new (winston.transports.File)({
@@ -62,6 +61,10 @@ logger.info('setup logging');
 
 // setup DI
 logger.info('setup wagner');
+wagner.factory('config', function () {
+    return config;
+});
+
 const kana = require('../kana');
 wagner.factory('kana', function () {
     return kana;
@@ -123,7 +126,7 @@ const connectionDevLogger = new winston.Logger({
             handleExceptions: true,
             json: false,
             colorize: true,
-            label: id
+            label: config.node.id
         })
     ]
 });
@@ -154,6 +157,6 @@ process.on('uncaughtException', function (err) {
 });
 
 // start server
-app.listen(port, function () {
-    logger.info('listening on port ' + port);
+app.listen(config.node.port, function () {
+    logger.info('listening on port ' + config.node.port);
 });
