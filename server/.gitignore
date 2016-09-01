@@ -6,3 +6,6 @@ node_modules
 
 # ignore logfiles
 log
+
+# VSCode configuration
+.vscode
