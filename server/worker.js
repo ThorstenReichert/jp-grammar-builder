@@ -13,13 +13,15 @@ const winston = require('winston');
 const app = express();
 
 // config
-const config = require('./config');
+const config = require('./config')({
+    rootDir: __dirname
+});
 
 // setup memory leak detection
 const memwatch = require('memwatch-next');
 const fs = require('fs');
 
-const logfile = path.join(__dirname, '/log/memwatch.log');
+const logfile = config.log.files.memwatch;
 
 memwatch.on('leak', function (info) {
     fs.appendFile(logfile, info, function (err) {
@@ -43,7 +45,7 @@ const logger = new winston.Logger({
         new (winston.transports.File)({
             name: 'file',
             level: 'warn',
-            filename: path.join(__dirname, '/log/all-logs.log'),
+            filename: config.log.files.all,
             timestamp: true
         })
     ],
@@ -52,7 +54,7 @@ const logger = new winston.Logger({
             humanReadableUnhandledException: true
         }),
         new (winston.transports.File)({
-            filename: path.join(__dirname, '/log/exceptions.log')
+            filename: config.log.files.exception
         })
     ]
 });
@@ -104,7 +106,7 @@ const connectionCombinedLogger = new winston.Logger({
     transports: [
         new (winston.transports.File)({
             level: 'info',
-            filename: path.join(__dirname, '/log/connections.log'),
+            filename: config.log.files.connection,
             json: true,
             maxsize: 5242880, //5MB
             maxFiles: 5,
