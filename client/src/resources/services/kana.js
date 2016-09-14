@@ -1,4 +1,6 @@
-import {noView, computedFrom} from 'aurelia-framework';
+import {noView, computedFrom, LogManager} from 'aurelia-framework';
+
+const log = LogManager.getLogger('KanaService');
 
 const chars = [
     'a', 'i', 'u', 'e', 'o',
@@ -86,9 +88,11 @@ export class KanaService {
 
     set alphabet(value) {
         if (value === 'katakana') {
+            log.debug('set alphabet to katakana');
             this._alphabet = 'katakana';
         }
         else {
+            log.debug('set alphabet to hiragana');
             this._alphabet = 'hiragana';
         }
     }
@@ -101,6 +105,7 @@ export class KanaService {
     set type(value) {
         if (typeof value === 'string') {
             this._type = value;
+            log.debug('set type', this._type);
         }
     }
 

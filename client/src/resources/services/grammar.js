@@ -1,7 +1,9 @@
-import {noView, computedFrom, inject} from 'aurelia-framework';
+import {noView, computedFrom, inject, LogManager} from 'aurelia-framework';
 import {ObserverLocator, BindingEngine, observable} from 'aurelia-binding';
 import {ApiService} from './api';
 import {KanaService} from './kana';
+
+const log = LogManager.getLogger('GrammarService');
 
 function range(length) {
     let res = [];
@@ -115,8 +117,9 @@ export class GrammarService {
             this.KanaService.type,
             grammar
         ).then(response => {
-            let i = 0;
+            log.debug('received response from GrammarService', response);
 
+            let i = 0;
             response.forEach(function (conjugation, index) {
                 if (index === 0) {
                     return;

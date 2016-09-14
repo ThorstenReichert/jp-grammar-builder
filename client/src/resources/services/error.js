@@ -1,4 +1,6 @@
-import {noView, computedFrom} from 'aurelia-framework';
+import {noView, computedFrom, LogManager} from 'aurelia-framework';
+
+const log = LogManager.getLogger('ErrorService');
 
 @noView
 export class ErrorService {
@@ -8,6 +10,7 @@ export class ErrorService {
     }
 
     clear() {
+        log.debug('clearing all errors');
         this.message = null;
         this.code = null;
     }
@@ -23,6 +26,9 @@ export class ErrorService {
     }
 
     set message(value) {
+        if (value) {
+            log.debug('setting error', value);
+        }
         this._message = value;
     }
 }

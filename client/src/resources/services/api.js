@@ -1,6 +1,8 @@
-import {noView, inject} from 'aurelia-framework';
+import {noView, inject, LogManager} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
 import {ErrorService} from './error';
+
+const log = LogManager.getLogger('ApiService');
 
 @noView
 @inject(ErrorService)
@@ -26,11 +28,15 @@ export class ApiService {
             grammar: grammar
         };
 
+        log.debug('sending /api/kana query', query);
+
         this.ErrorService.clear();
 
         return this.http.post('/api/kana', query)
             .catch(error => {
+                log.debug('/api/kana responded with error', error);
                 if (error.statusCode === 400) {
+                    log.debug('resolved errorcode 400');
                     return new Promise(function (resolve, reject) {
                         resolve(error);
                     });
