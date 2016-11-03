@@ -64,7 +64,7 @@ describe('kana', function () {
             let fn = function () {
                 k.add(['tu', 'm']);
             };
-            expect(fn).to.throw(Error, 'kana#add');
+            expect(fn).to.throw(Error);
         });
 
         it('should validate string argument', function () {
@@ -72,7 +72,7 @@ describe('kana', function () {
             let fn = function () {
                 k.add('definitelynochar');
             };
-            expect(fn).to.throw(Error, 'kana#add');
+            expect(fn).to.throw(Error);
         });
 
     });
@@ -206,28 +206,28 @@ describe('kana', function () {
             let fn = function () {
                 kana.ichidan.require('ichidan');
             };
-            expect(fn).to.not.throw(Error, 'kana#require');
+            expect(fn).to.not.throw(Error);
         });
 
         it('should not throw if type is one of required types', function () {
             let fn = function () {
                 kana.ichidan.require(['ichidan', 'godan']);
             };
-            expect(fn).to.not.throw(Error, 'kana#require');
+            expect(fn).to.not.throw(Error);
         });
 
         it('should throw Error if type is not required type', function () {
             let fn = function () {
                 kana.ichidan.require('godan');
             };
-            expect(fn).to.throw(Error, 'kana#require');
+            expect(fn).to.throw(Error);
         });
 
         it('should throw Error if type is not one of required types', function () {
             let fn = function () {
                 kana.ichidan.require(['stem', 'godan']);
             };
-            expect(fn).to.throw(Error, 'kana#require');
+            expect(fn).to.throw(Error);
         });
 
     });

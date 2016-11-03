@@ -4,6 +4,7 @@ const chars = require('./chars');
 const types = require('./types');
 const specials = require('./specials');
 const GrammarError = require('./error/grammar-error');
+const InvalidArgumentError = require('./error/invalid-argument-error');
 
 class Kana {
     /**
@@ -82,11 +83,11 @@ class Kana {
                 return s._word;
             }
             else {
-                throw new Error('Kana#makeArray: argument object contains no array _word');
+                throw new InvalidArgumentError('argument object must have property array _word');
             }
         }
         else {
-            throw new Error('Kana#makeArray: argument type not supported');
+            throw new InvalidArgumentError('argument must be of type array, string or object');
         }
     }
 
@@ -98,7 +99,7 @@ class Kana {
         let a = Kana.makeArray(s);
 
         if (!Kana.isValid(a)) {
-            throw new Error('kana#add: argument array invalid');
+            throw new InvalidArgumentError('argument array invalid');
         }
         this._word = this._word.concat(a);
 
@@ -149,13 +150,13 @@ class Kana {
     require(types) {
         if (!Array.isArray(types)) {
             if ('string' !== typeof types) {
-                throw new GrammarError('kana#require: invalid type requirements');
+                throw new InvalidArgumentError('non-array arguments must be of type string');
             }
             types = [types];
         }
 
         if (-1 === types.indexOf(this.type)) {
-            throw new GrammarError('kana#require: type ' + this._type + ' does not match requirements: ' + types.join(','));
+            throw new GrammarError('word must be of type ' + types.join(',') + ' but got ' + this._type);
         }
     }
 
