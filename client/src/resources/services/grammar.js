@@ -13,7 +13,7 @@ function range(length) {
     return res;
 }
 
-class GrammarItem {
+export class GrammarItem {
     constructor(notify) {
         this.notify = notify;
         this._result = null;
@@ -84,6 +84,11 @@ export class GrammarService {
         return range(length);
     }
 
+    push(id) {
+        this.stack[this.stack.length - 1].id = id;
+        this.clean();
+    }
+
     clean() {
         let newStack = [];
         let reset = false;
@@ -117,7 +122,7 @@ export class GrammarService {
             this.KanaService.type,
             grammar
         ).then(response => {
-            log.debug('received response from GrammarService', response);
+            log.debug('received response from ApiService', response);
 
             let i = 0;
             response.forEach(function (conjugation, index) {
@@ -136,6 +141,13 @@ export class GrammarService {
             });
         },
         error => {});
+    }
+
+    reset() {
+        if (this.stack.length > 0) {
+            this.stack[0].id = null;
+            this.clean();
+        }
     }
 }
 
