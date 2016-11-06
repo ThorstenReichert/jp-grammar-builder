@@ -11,6 +11,10 @@
     padding-left: 10px;
 }
 
+.kana-output-string{
+    word-spacing: 10px;
+}
+
 @keyframes "blinking-cursor"{
     from, to {
         border-bottom: 2px solid transparent;
