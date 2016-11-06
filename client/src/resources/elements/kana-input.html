@@ -5,7 +5,13 @@
   <form class="form-horizontal" role="form" submit.delegate="GrammarService.query()">
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-8">
-        <h3><kana word.bind="KanaService.word"></kana></h3>
+        <div class="kana-output">
+          <h3>
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+            <kana word.bind="KanaService.word"></kana>
+            <i class="output-cursor" aria-hidden="true"></i>
+          </h3>
+        </div>
       </div>
     </div>
     <div class="form-group">
