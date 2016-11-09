@@ -1,7 +1,6 @@
-import {inject,noView} from 'aurelia-framework';
+import {inject} from 'aurelia-framework';
 import {JslKatakanaMapperService} from '../services/jsl-katakana-mapper';
 
-@noView
 @inject(JslKatakanaMapperService)
 export class KatakanaValueConverter {
   constructor(JslKatakanaMapperService) {
