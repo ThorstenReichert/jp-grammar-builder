@@ -1,8 +1,9 @@
-import {noView, computedFrom, LogManager} from 'aurelia-framework';
+import {inject, noView, computedFrom, LogManager} from 'aurelia-framework';
+import {KanaParserService} from './kana-parser';
 
 const log = LogManager.getLogger('KanaService');
 
-const chars = [
+/*const chars = [
     'a', 'i', 'u', 'e', 'o',
     'ka', 'ki', 'ku', 'ke', 'ko',
     'kya', 'kyu', 'kyo',
@@ -33,10 +34,16 @@ const chars = [
     'k', 's', 't', 'p'
 ];
 
+const doubleConsonants = ['kk', 'ss', 'tt', 'pp'];
+
 function parse(string) {
     let res = [];
 
+    // this parser leverages the fact that no shorter symbols
+    // occur as substrings of longer symbols
+
     while (string.length > 0) {
+        // recognize 3-char symbols
         let token = string.substring(0,3);
         if (chars.indexOf(token) !== -1) {
             res.push(token);
@@ -44,6 +51,7 @@ function parse(string) {
             continue;
         }
 
+        // recognize regular 2-char symbols
         token = string.substring(0,2);
         if (chars.indexOf(token) !== -1) {
             res.push(token);
@@ -51,6 +59,14 @@ function parse(string) {
             continue;
         }
 
+        // recognize double consonants
+        if (doubleConsonants.indexOf(token) !== -1) {
+            res.push(token.charAt(0) + token.charAt(0));
+            string = string.substring(1);
+            continue;
+        }
+
+        // recognize 1-char symbols
         token = string.substring(0,1);
         if (chars.indexOf(token) !== -1) {
             res.push(token);
@@ -63,11 +79,14 @@ function parse(string) {
     }
 
     return res;
-}
+}*/
 
 @noView
+@inject(KanaParserService)
 export class KanaService {
-    constructor() {
+    constructor(KanaParserService) {
+        this.parse = KanaParserService.parse;
+
         this._word = [];
         this._type = '';
         this._alphabet = 'hiragana';
@@ -78,7 +97,7 @@ export class KanaService {
             throw Error('KanaService: "kana" must be string');
         }
 
-        this._word = parse(value);
+        this._word = this.parse(value);
     }
 
     @computedFrom('_word')
