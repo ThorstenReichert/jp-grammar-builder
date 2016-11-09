@@ -114,6 +114,14 @@ map.pp = '&#12483;';
 
 @noView
 export class JslKatakanaMapperService {
+    //
+    // methods
+    //
+
+    /**
+     * @param {string} char
+     * @returns {string}
+     */
     map(char) {
         return map[char] || char;
     }
