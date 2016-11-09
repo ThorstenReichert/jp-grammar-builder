@@ -1,0 +1,12 @@
+.faq > .panel-default{
+    border-color: transparent;
+}
+
+.faq > .panel-default > .panel-heading{
+    background-color: white;
+    border-color: transparent;
+}
+
+.faq > .panel-default > .panel-heading + .panel-collapse > .panel-body{
+    border-color: transparent;
+}
