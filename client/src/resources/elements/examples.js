@@ -48,14 +48,14 @@ export class Examples {
         'taberu',
         types.ichidan,
         [rules.desire, rules.naru, rules.perfective],
-        ['食','be','ta','ku','na','t','ta'],
+        ['食','be','ta','ku','na','tt','ta'],
         'became wanting to eat (got hungry)'
       ),
       new ExampleConfig(
         'taberu',
         types.ichidan,
         [rules.desire, rules.negative, rules.naru, rules.perfective],
-        ['食','be','ta','ku','na','ku','na','t','ta'],
+        ['食','be','ta','ku','na','ku','na','tt','ta'],
         ' "became not wanting to eat" (lost my appetite)'
       )
     ];
