@@ -105,10 +105,10 @@ map.rya = '&#12522;&#12515;';
 map.ryu = '&#12522;&#12517;';
 map.ryo = '&#12522;&#12519;';
 
-map.k = '&#12483;';
-map.s = '&#12483;';
-map.t = '&#12483;';
-map.p = '&#12483;';
+map.kk = '&#12483;';
+map.ss = '&#12483;';
+map.tt = '&#12483;';
+map.pp = '&#12483;';
 
 function convert(char) {
   return map[char] || char;
