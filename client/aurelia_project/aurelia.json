@@ -154,7 +154,7 @@
             "deps": ["jquery"],
             "exports": "$",
             "resources": [
-              "css/bootstrap-lumen.min.css"
+              
             ]
           }
         ]
