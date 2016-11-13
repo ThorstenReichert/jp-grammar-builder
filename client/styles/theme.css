@@ -63,3 +63,55 @@
     background-color: rgba(199,0,37,0.1);
     color: rgb(85,85,85);
 }
+
+.kana-input{
+    border-left: 0;
+    border-right: 0;
+    background: linear-gradient(left, white, rgba(199,0,37,0.03), white);
+    box-shadow: 0 0 5px rgba(199,0,37,0.2) inset;
+    margin-top: 5%;
+    padding: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.kana-input:before{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    display: block;
+    content: '';
+    background: linear-gradient(to right, white 0%, rgba(255,255,255,0) 100%);
+    width: 5em;
+    height: 100%;
+}
+
+.kana-input:after{
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    display: block;
+    content: '';
+    background: linear-gradient(to left, white 0%, rgba(255,255,255,0) 100%);
+    width: 5em;
+    height: 100%;
+}
+
+.footer{
+    margin: 24px;
+    text-align: center;
+}
+
+.footer a{
+    color: rgb(85,85,85);
+}
+
+.footer a:hover{
+    color: rgb(85,85,85);
+}
+
+.footer a:visited{
+    color: rgb(85,85,85);
+}
