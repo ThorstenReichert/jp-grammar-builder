@@ -41,20 +41,11 @@ const logger = new winston.Logger({
             level: 'debug',
             label: config.node.id,
             colorize: true
-        }),
-        new (winston.transports.File)({
-            name: 'file',
-            level: 'warn',
-            filename: config.log.files.all,
-            timestamp: true
         })
     ],
     exceptionHandlers: [
         new (winston.transports.Console)({
             humanReadableUnhandledException: true
-        }),
-        new (winston.transports.File)({
-            filename: config.log.files.exception
         })
     ]
 });
@@ -95,25 +86,6 @@ app.use('/client', express.static(
 ));
 
 // setup morgan (ignore client requests)
-logger.info('setup morgan');
-const connectionCombinedLogger = new winston.Logger({
-    transports: [
-        new (winston.transports.File)({
-            level: 'info',
-            filename: config.log.files.connection,
-            json: true,
-            maxsize: 5242880, //5MB
-            maxFiles: 5,
-            colorize: false
-        })
-    ]
-});
-
-connectionCombinedLogger.stream = {
-    write: function (message, encoding) {
-        connectionCombinedLogger.info(message);
-    }
-};
 
 const connectionDevLogger = new winston.Logger({
     transports: [
@@ -133,7 +105,7 @@ connectionDevLogger.stream = {
     }
 };
 
-app.use(morgan('combined', { 'stream': connectionCombinedLogger.stream }));
+// app.use(morgan('combined', { 'stream': connectionCombinedLogger.stream }));
 app.use(morgan('dev', { 'stream': connectionDevLogger.stream }));
 
 // setup api router

@@ -17,22 +17,10 @@ module.exports = function (params) {
         node.id = null;
     }
 
-    // log config
-    const log = {
-        files: {
-            all: path.join(params.rootDir, '/log/all-logs.log'),
-            connection: path.join(params.rootDir, '/log/connections.log'),
-            exception: path.join(params.rootDir, '/log/exceptions.log'),
-            memleak: path.join(params.rootDir, '/log/memwatch.log'),
-        }
-    }
-
     // assemble config
     const config = {
         env: process.env.NODE_ENV || env.development,
         root: params.rootDir,
-
-        log: log,
         node: node
     };
 
