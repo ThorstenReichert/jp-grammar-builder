@@ -1,0 +1,32 @@
+{
+  "name": "jp-grammar-builder",
+  "version": "1.0.0",
+  "description": "![Travis-CI status](https://travis-ci.org/Uninspiriert/jp-grammar-builder.svg?branch=master)",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd client && npm run build -- --env prod && cd ..",
+    "install": "./node_modules/.bin/npm-recursive-install --skip-root",
+    "preinstall": "npm install --save-dev recursive-install",
+    "postinstall": "npm run build",
+    "start": "cd server && nf start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Uninspiriert/jp-grammar-builder.git"
+  },
+  "engines": {
+    "node": "4.4.5",
+    "npm": "3.x.x"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Uninspiriert/jp-grammar-builder/issues"
+  },
+  "homepage": "https://github.com/Uninspiriert/jp-grammar-builder#readme",
+  "devDependencies": {
+    "recursive-install": "^1.3.0"
+  }
+}
