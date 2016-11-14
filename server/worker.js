@@ -19,18 +19,10 @@ const config = require('./config')({
 
 // setup memory leak detection
 const memwatch = require('memwatch-next');
-const fs = require('fs');
-
-const logfile = config.log.files.memwatch;
 
 memwatch.on('leak', function (info) {
-    fs.appendFile(logfile, info, function (err) {
-        if (err) {
-            throw err;
-        }
-
-        console.warn('Memory leak detected. Wrote info to ' + logfile);
-    });
+    console.warn('Memory leak detected. Wrote info to ');
+    console.warn(info);
 });
 
 // setup logging
