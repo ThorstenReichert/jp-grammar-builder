@@ -8,7 +8,7 @@ module.exports = function (params) {
 
     // node config
     const node = {
-        port: process.env.NODE_PORT || 3000
+        port: process.env.NODE_PORT || process.env.PORT || 3000
     };
 
     if (cluster.isWorker) {
@@ -17,7 +17,7 @@ module.exports = function (params) {
         node.id = null;
     }
 
-    // log config 
+    // log config
     const log = {
         files: {
             all: path.join(params.rootDir, '/log/all-logs.log'),
