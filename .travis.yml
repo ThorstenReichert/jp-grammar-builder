@@ -10,7 +10,7 @@ addons:
             - g++-4.8
 before_install: if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 install:
-    - cd server && npm install && cd ..
+    - cd server && npm install && npm run build && cd ..
     - cd kana && npm install && cd ..
     - cd client && npm install && cd ..
 script:

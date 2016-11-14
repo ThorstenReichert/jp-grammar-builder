@@ -8,8 +8,7 @@
   },
   "scripts": {
     "build": "au build",
-    "preinstall": "npm install -g aurelia-cli",
-    "postinstall": "npm run build"
+    "preinstall": "npm install -g aurelia-cli"
   },
   "license": "MIT",
   "dependencies": {
