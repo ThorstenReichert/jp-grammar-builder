@@ -88,12 +88,6 @@ app.use(helmet.noSniff());
 logger.info('setup compression');
 app.use(compression());
 
-// setup favicon
-logger.info('setup favicon');
-app.use(favicon(
-    path.join(__dirname, '../client/flag.ico')
-));
-
 // setup client
 logger.info('setup client');
 app.use('/client', express.static(
