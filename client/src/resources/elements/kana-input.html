@@ -32,23 +32,23 @@
       <label class="control-label col-sm-2" for="kana-type">Type</label>
       <div class="col-sm-2">
         <select class="form-control" id="kana-type" tabindex="2" value.bind="KanaService.type">
-          <option value=""></option>
-          <optgroup label="Main">
-            <option value.one-time="types.adjectival">Adjectival</option>
-            <option value.one-time="types.adverb">Adverb</option>
-            <option value.one-time="types.nominal">Nominal</option>
-            <option value.one-time="types.godan">Godan-Verb</option>
-            <option value.one-time="types.ichidan">Ichidan-Verb</option>
-          </optgroup>
-          <optgroup label="Specials">
-            <option value.one-time="types.kuru">&#12367;&#12427;-Verb</option>
-            <option value.one-time="types.suru">&#12377;&#12427;-Verb</option>
-          </optgroup>
-          <optgroup label="Auxilliary">
-            <option value.one-time="types.iform">&#12356;-Form</option>
-            <option value.one-time="types.teform">&#12390;-Form</option>
-          </optgroup>
-        </select>
+            <option value=""></option>
+            <optgroup label="Main">
+              <option value.one-time="types.adjectival">Adjectival</option>
+              <option value.one-time="types.adverb">Adverb</option>
+              <option value.one-time="types.nominal">Nominal</option>
+              <option value.one-time="types.godan">Godan-Verb</option>
+              <option value.one-time="types.ichidan">Ichidan-Verb</option>
+            </optgroup>
+            <optgroup label="Specials">
+              <option value.one-time="types.kuru">&#12367;&#12427;-Verb</option>
+              <option value.one-time="types.suru">&#12377;&#12427;-Verb</option>
+            </optgroup>
+            <optgroup label="Auxilliary">
+              <option value.one-time="types.iform">&#12356;-Form</option>
+              <option value.one-time="types.teform">&#12390;-Form</option>
+            </optgroup>
+          </select>
       </div>
       <div class="col-sm-2 col-sm-offset-4">
         <select class="form-control" id="kana-alphabet" tabindex="-1" value.bind="KanaService.alphabet">
@@ -79,7 +79,9 @@
         </select>
       </div>
       <div class="col-sm-6" if.bind="item.hasResult">
-        <h4><kana word.bind="item.result"></kana></h4>
+        <h4>
+          <kana word.bind="item.result"></kana>
+        </h4>
       </div>
       <div class="col-sm-6" if.bind="item.hasError">
         <div class="alert alert-danger inline">${item.error}</div>
