@@ -8,7 +8,7 @@
     "install": "./node_modules/.bin/npm-recursive-install --skip-root",
     "preinstall": "npm install --save-dev recursive-install",
     "postinstall": "npm run build",
-    "start": "cd server && nf start",
+    "start": "cd server && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

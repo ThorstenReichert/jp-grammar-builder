@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "./node_modules/.bin/nf start",
     "test": "mocha \"./**/*.spec.js\""
   },
   "author": "Thorsten Reichert",
