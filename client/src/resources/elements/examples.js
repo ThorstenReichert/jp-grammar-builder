@@ -49,7 +49,7 @@ export class Examples {
         types.ichidan,
         [rules.desire, rules.naru, rules.perfective],
         ['食','be','ta','ku','na','tt','ta'],
-        'became wanting to eat (got hungry)'
+        '"became wanting to eat" (got hungry)'
       ),
       new ExampleConfig(
         'taberu',
